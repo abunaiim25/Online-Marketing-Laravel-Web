@@ -32,17 +32,20 @@ Admin - Product Add
                         @endif
 
                         <div class="row mg-b-25">
+
                             <div class="col-lg-4">
                                 <div class="form-group">
                                     <label class="form-control-label">Product Name: <span
                                             class="text-danger">*</span></label>
                                     <input class="form-control bg-white " style="color: black" type="text" name="product_name"
-                                        value="{{ old('product_name') }}" placeholder="product name">
+                                         placeholder="product name">
                                     @error('product_name')
                                         <strong class="text-danger">{{ $message }}</strong>
                                     @enderror
                                 </div>
                             </div><!-- col-4 -->
+
+
                             <div class="col-lg-4">
                                 <div class="form-group">
                                     <label class="form-control-label">Product Code: <span
@@ -54,6 +57,7 @@ Admin - Product Add
                                     @enderror
                                 </div>
                             </div><!-- col-4 -->
+
                             <div class="col-lg-4">
                                 <div class="form-group">
                                     <label class="form-control-label">Price: <span
@@ -109,6 +113,18 @@ Admin - Product Add
                                         @endforeach
                                     </select>
                                     @error('brand_id')
+                                        <strong class="text-danger">{{ $message }}</strong>
+                                    @enderror
+                                </div>
+                            </div><!-- col-4 -->
+
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    <label class="form-control-label">Product Slug: <span
+                                            class="text-danger">*</span></label>
+                                    <input class="form-control bg-white " style="color: black" type="text" name="product_slug"
+                                        placeholder="product slug">
+                                    @error('product_slug')
                                         <strong class="text-danger">{{ $message }}</strong>
                                     @enderror
                                 </div>

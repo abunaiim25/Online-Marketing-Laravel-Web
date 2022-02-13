@@ -17,7 +17,8 @@
     <link rel="stylesheet" href="{{ asset('admin') }}/assets/vendors/owl-carousel-2/owl.carousel.min.css">
     <link rel="stylesheet" href="{{ asset('admin') }}/assets/vendors/owl-carousel-2/owl.theme.default.min.css">
     <link rel="stylesheet" href="{{ asset('admin') }}/assets/css/style.css">
-    <link rel="shortcut icon" href="{{ asset('admin') }}/assets/images/favicon.png" />
+   
+    <link rel="shortcut icon" href="{{ asset('frontend') }}/image/logo2.png" alt="" />
 
     <link rel="stylesheet" href="{{ asset('admin') }}/assets/css/admin.css">
       <!--font awesome cdn link-->
@@ -95,9 +96,9 @@
 
     <!--https://sweetalert.js.org/guides/-->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    @if (session('status_sweet'))
+    @if (session('status_swal'))
         <script>
-            swal("{{ session('status_sweet') }}");
+            swal("{{ session('status_swal') }}");
         </script>
     @endif
 

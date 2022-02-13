@@ -2,14 +2,17 @@
 
 use App\Http\Controllers\admin\BrandController;
 use App\Http\Controllers\admin\CategoryController;
+use App\Http\Controllers\admin\DiscountController;
 use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\frontend\BlogController;
-use App\Http\Controllers\frontend\Cartcontroller;
 use App\Http\Controllers\frontend\ShopController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth; /*add*/
 use App\Http\Controllers\admin\Image;
+use App\Http\Controllers\frontend\CartController;
+use App\Http\Controllers\frontend\CheckoutController;
+use App\Http\Controllers\frontend\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +37,8 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
+
+Route::middleware(['auth', 'isAdmin'])->group(function(){
 
 //================Admin Category========================
 Route::get('admin_category',[CategoryController::class,'index']);
@@ -63,16 +68,47 @@ Route::get('admin_products_delete/{id}',[ProductController::class,'Delete']);
 Route::get('admin_products_inactive/{id}',[ProductController::class,'Inactive']);
 Route::get('admin_products_active/{id}',[ProductController::class,'Active']);
 
+//===========admin discount section================
+Route::get('admin_discount',[DiscountController::class,'index']);
+Route::post('admin_store_discount',[DiscountController::class,'store']);
+Route::get('admin_discount_edit/{id}',[DiscountController::class,'edit']);
+Route::post('admin_update_discount/{id}',[DiscountController::class,'update']);
+Route::get('admin_discount_delete/{id}',[DiscountController::class,'Delete']);
+Route::get('admin_discount_inactive/{id}',[DiscountController::class,'Inactive']);
+Route::get('admin_discount_active/{id}',[DiscountController::class,'Active']);
+
+});
+
 
 //================Frontend Home========================
 Route::get('/',[HomeController::class,'index']);
 
 //================Frontend Shop========================
 Route::get('shop',[ShopController::class,'shop_page']);
-Route::get('product_details',[ShopController::class,'product_details_page']);
+//product details
+Route::get('product_details/{id}',[ShopController::class,'product_details_page']);
+Route::get('category_product_show/{id}',[ShopController::class,'category_product_show_page']);
 
 //================Frontend Blog========================
 Route::get('blog',[BlogController::class,'blog_page']);
 
+
+Route::middleware(['auth'])->group(function (){
+    
 //================Frontend Cart========================
-Route::get('cart',[Cartcontroller::class,'cart_page']);
+Route::post('cart_add/{id}',[CartController::class,'cart_add']);
+Route::get('cart',[CartController::class,'cart_page']);
+Route::post('cart_quantity_update/{id}',[CartController::class,'cart_quantity_update']);
+Route::get('cart_destroy/{id}',[CartController::class,'cart_destroy']);
+//discount
+Route::post('discount_apply',[CartController::class,'discount_apply']);
+Route::get('discount_destroy',[CartController::class,'discount_destroy']);
+
+//============= checkout section=============
+Route::get('checkout',[CheckoutController::class,'index']);
+
+//============= Order section=============
+Route::post('place_order',[OrderController::class,'place_order']);
+Route::get('order_success',[OrderController::class,'order_success']);
+
+});

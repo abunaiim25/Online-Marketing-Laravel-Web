@@ -24,7 +24,7 @@
                 <div class="row row-sm">
                     <div class="col-md-8 m-auto">
                         <nav class="breadcrumb sl-breadcrumb">
-                            <a class="breadcrumb-item  text-white" style="text-decoration: none" href="#">Brand</a>
+                            <a class="breadcrumb-item  text-white" style="text-decoration: none" href="{{url('admin_brand')}}">Brand</a>
                             <span class="breadcrumb-item active text-white">Brand Edit</span>
                           </nav>
                         <div class="card">
@@ -59,7 +59,7 @@
 
                                     </div>
 
-                                    <button type="submit" class="btn btn-primary mt-3">Update Category</button>
+                                    <button type="submit" class="btn btn-primary mt-3">Update Brand</button>
                                 </form>
 
 

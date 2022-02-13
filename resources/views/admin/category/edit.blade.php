@@ -23,7 +23,7 @@
                     <div class="col-md-8 m-auto">
                         
                         <nav class="breadcrumb sl-breadcrumb">
-                            <a class="breadcrumb-item  text-white" style="text-decoration: none" href="#">Category</a>
+                            <a class="breadcrumb-item  text-white" style="text-decoration: none" href="{{url('admin_category')}}">Category</a>
                             <span class="breadcrumb-item active text-white">Category Edit</span>
                           </nav>
                           

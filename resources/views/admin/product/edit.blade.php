@@ -19,7 +19,7 @@
     <div class="container">
         <div class="sl-mainpanel m-4">
             <nav class="breadcrumb sl-breadcrumb">
-                <a class="breadcrumb-item  text-white" style="text-decoration: none" href="#">Manage Product</a>
+                <a class="breadcrumb-item  text-white" style="text-decoration: none" href="{{url('admin_products_manage')}}">Manage Product</a>
                 <span class="breadcrumb-item active text-white">Product Edit</span>
             </nav>
 
@@ -129,6 +129,18 @@
                                                 @endforeach
                                             </select>
                                             @error('brand_id')
+                                                <strong class="text-danger">{{ $message }}</strong>
+                                            @enderror
+                                        </div>
+                                    </div><!-- col-4 -->
+
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label class="form-control-label">Product Slug: <span
+                                                    class="text-danger">*</span></label>
+                                            <input class="form-control bg-white " style="color: black" type="text" name="product_slug"  value="{{ $product->product_slug }}"
+                                                placeholder="product slug">
+                                            @error('product_slug')
                                                 <strong class="text-danger">{{ $message }}</strong>
                                             @enderror
                                         </div>

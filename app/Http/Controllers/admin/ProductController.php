@@ -8,7 +8,7 @@ use App\Models\Category;
 use App\Models\Product;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\File;//for delete imag
 
 
 class ProductController extends Controller
@@ -66,7 +66,8 @@ class ProductController extends Controller
         $products->category_id=$request->category_id;
         $products->brand_id=$request->brand_id;
         $products->description=$request->description;
-        $products->product_slug=$request->product_slug;
+        //$products->product_slug=$request->product_slug;
+        $products->product_slug = str_replace(' ', '_', $request-> product_slug);
        
         $products->save();
         return Redirect('admin_products_manage')->with('success','Product Added Successfully');
@@ -76,8 +77,8 @@ class ProductController extends Controller
 
        // ======================== manage products ======================== 
        public function manage_product(){
-        //or=== $products = Product::latest()->get();
-        $products = Product::orderBy('id','DESC')->get();
+         $products = Product::latest()->paginate(10);
+        //or===$products = Product::orderBy('id','DESC')->get();
         return view('admin.product.manage',compact('products'));
     }
 
@@ -98,6 +99,11 @@ class ProductController extends Controller
 
         if($request->hasFile('image_one'))
         {
+            $path ='img_DB/product/image_one/'.$products->image_one;
+            if(File::exists($path))//avobe import class
+            {
+                File::delete($path);
+            }
             $file= $request->file('image_one');
             $ext = $file->getClientOriginalExtension();
             $filename = time().'.'.$ext;
@@ -106,6 +112,11 @@ class ProductController extends Controller
         }
         if($request->hasFile('image_two'))
         {
+            $path ='img_DB/product/image_two/'.$products->image_two;
+            if(File::exists($path))//avobe import class
+            {
+                File::delete($path);
+            }
             $file= $request->file('image_two');
             $ext = $file->getClientOriginalExtension();
             $filename = time().'.'.$ext;
@@ -114,6 +125,11 @@ class ProductController extends Controller
         }
         if($request->hasFile('image_three'))
         {
+            $path ='img_DB/product/image_three/'.$products->image_three;
+            if(File::exists($path))//avobe import class
+            {
+                File::delete($path);
+            }
             $file= $request->file('image_three');
             $ext = $file->getClientOriginalExtension();
             $filename = time().'.'.$ext;
@@ -122,6 +138,11 @@ class ProductController extends Controller
         }
         if($request->hasFile('image_four'))
         {
+            $path ='img_DB/product/image_four/'.$products->image_four;
+            if(File::exists($path))//avobe import class
+            {
+                File::delete($path);
+            }
             $file= $request->file('image_four');
             $ext = $file->getClientOriginalExtension();
             $filename = time().'.'.$ext;
@@ -136,7 +157,7 @@ class ProductController extends Controller
         $products->category_id=$request->category_id;
         $products->brand_id=$request->brand_id;
         $products->description=$request->description;
-        $products->product_slug=$request->product_slug;
+        $products->product_slug = str_replace(' ', '_', $request-> product_slug);
        
         $products->update();
         return Redirect('admin_products_manage')->with('success','Product Update Successfully');
@@ -147,39 +168,42 @@ class ProductController extends Controller
       public function Delete ($id)
       {
 
-        $image = Product::findOrFail($id);
+        $products = Product::findOrFail($id);
 
-         $img_one = public_path('frontend/img/product/'.$image->image_one);
-         if (is_file($img_one)){
-         unlink($img_one);
+        if($products -> image_one)
+        {
+            $path ='img_DB/product/image_one/'.$products->image_one;
+            if(File::exists($path))//avobe import class
+            {
+                File::delete($path);
+            }
         }
-        $img_two = public_path('frontend/img/product/'.$image->image_two);
-        if (is_file($img_two)){
-        unlink($img_two);
-       }
-       $img_three = public_path('frontend/img/product/'.$image->image_three);
-       if (is_file($img_three)){
-       unlink($img_three);
-      }
-      $img_four = public_path('frontend/img/product/'.$image->image_four);
-      if (is_file($img_four)){
-      unlink($img_four);
-     }
+        if($products -> image_two)
+        {
+            $path ='img_DB/product/image_two/'.$products->image_two;
+            if(File::exists($path))//avobe import class
+            {
+                File::delete($path);
+            }
+        }
+        if($products -> image_three)
+        {
+            $path ='img_DB/product/image_three/'.$products->image_three;
+            if(File::exists($path))//avobe import class
+            {
+                File::delete($path);
+            }
+        }
+        if($products -> image_four)
+        {
+            $path ='img_DB/product/image_four/'.$products->image_four;
+            if(File::exists($path))//avobe import class
+            {
+                File::delete($path);
+            }
+        }
 
-/*
-   // $deletelogo->delete();
-       //img remove from vscode
-        $image = Product::findOrFail($id);
-        $img_one = $image->image_one;
-        $img_two = $image->image_two;
-        $img_three = $image->image_three;
-        $img_four = $image->image_four;
-        unlink($img_one);
-        unlink($img_two);
-        unlink($img_three);
-        unlink($img_four);
-*/
-        Product::findOrFail($id)->delete();
+        $products->delete();
         return Redirect()->back()->with('delete','Product Successfully Deleted');
     }
 

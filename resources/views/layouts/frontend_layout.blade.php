@@ -10,14 +10,15 @@
     <title>
         @yield('title')
     </title>
-
+  
+    <link rel="shortcut icon" href="{{ asset('frontend') }}/image/logo2.png" alt="" />
 
     <link rel="stylesheet" href="{{ asset('frontend') }}/css/style_index.css">
     <link rel="stylesheet" href="{{ asset('frontend') }}/css/style_shop.css">
     <link rel="stylesheet" href="{{ asset('frontend') }}/css/style_blog.css">
     <link rel="stylesheet" href="{{ asset('frontend') }}/css/style_cart.css">
     <link rel="stylesheet" href="{{ asset('frontend') }}/css/style_product_details.css">
- 
+
 
     <!--stackpath bootstrap-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
@@ -53,7 +54,7 @@
     @include('layouts.inc.footer')
 
 
-  
+
     <!--=====back to top button (using JS)=====-->
     <a href="#" class="to-top">
         <i class="fas fa-chevron-up"></i>
@@ -69,7 +70,15 @@
         integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous">
     </script>
 
+    <!--https://sweetalert.js.org/guides/-->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
+    @if (session('status'))
+        <script>
+            swal("{{ session('status') }}");
+            
+        </script>
+    @endif
 
 
 

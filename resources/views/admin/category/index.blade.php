@@ -1,6 +1,5 @@
 @extends('layouts.admin_layout')
 
-@section('category') active @endsection
 
 @section('title')
     Admin - Category
@@ -12,15 +11,15 @@
 
     <div class="sl-mainpanel m-3">
         <nav class="breadcrumb sl-breadcrumb">
-            <a class="breadcrumb-item" href="index.html">Admin</a>
+            <a class="breadcrumb-item" href="#">Admin</a>
             <span class="breadcrumb-item active text-white">Category</span>
         </nav>
 
         <div class="sl-pagebody">
             <div class="row row-sm">
-                <div class="col-md-8">
+                <div class="col-md-8  mt-2">
                     <div class="card p-3">
-                        <h6 class="card-body-title"> DataTable</h6>
+                        <h6 class="card-body-title"> Category List</h6>
 
                         {{-- category updated message --}}
                         @if (session('Catupdated'))
@@ -42,11 +41,11 @@
                             </div>
                         @endif
 
-                        <div class="table-wrapper">
+                        <div class="table-wrapper"  style="overflow: auto">
 
                             @if ($categories->count() > 0)
 
-                            <table id="datatable1" class="table display responsive nowrap text-white">
+                            <table id="datatable1" class="table  text-white">
                                 <thead>
                                     <tr>
                                         <th class="wd-15p">Sl</th>
@@ -57,13 +56,12 @@
                                 </thead>
                                 <tbody>
 
-                                    @php
-                                        $i = 1;
-                                    @endphp
+
+                                    <?php $i = $categories->perPage()*($categories->currentPage()-1) ?>
 
                                     @foreach ($categories as $category)
                                         <tr>
-                                            <td>{{ $i++ }}</td>
+                                            <td> <?php $i++ ?> {{ $i }}</td>
                                             <td>{{ $category->category_name }}</td>
                                             <td>
                                                 @if ($category->status == 1)
@@ -76,7 +74,7 @@
                                                 <a href="{{ url('admin_categories_edit/' . $category->id) }}"
                                                     class="btn btn-sm btn-success"><i class="fa fa-pencil"></i></a>
                                                 <a href="{{ url('admin_categories_delete/' . $category->id) }}"
-                                                    class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
+                                                    class="btn btn-sm btn-danger" onclick="return confirm('Are You Sure To Delete?')"><i class="fa fa-trash"></i></a>
 
                                                 @if ($category->status == 1)
                                                     <a href="{{ url('admin_categories_inactive/' . $category->id) }}"
@@ -100,7 +98,7 @@
                     </div><!-- card -->
                 </div>
 
-                <div class="col-md-4">
+                <div class="col-md-4  mt-2">
                     <div class="card">
                         <div class="card-header">Add Category
                         </div>
@@ -133,10 +131,6 @@
 
                                 <button type="submit" class="btn btn-primary">Add</button>
                             </form>
-
-
-
-
                         </div>
                     </div>
                 </div>
@@ -145,5 +139,12 @@
         </div>
 
 
+        <div class="d-flex my-5">
+            {{--(paginate) ->Providers\AppServiceProvider.php --}}
+            {{$categories->links()}}
+       {{--
+            {{$appoint->onEachSide(1)-> links()}}
+       --}}
+       </div>
 
     @endsection

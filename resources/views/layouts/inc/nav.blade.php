@@ -2,7 +2,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light py-2 fixed-top">
     <div class="container">
         <a class="navbar-brand" href="{{ url('/') }}">
-            <h2><strong> Online<span style="color: coral;">-Marketing</span></strong></h2>
+            <img src="{{ asset('frontend') }}/image/logo.png" alt="">
         </a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"

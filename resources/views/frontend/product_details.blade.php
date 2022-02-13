@@ -2,131 +2,127 @@
 
 
 @section('title')
-Online Marketing - Product Details
+    Online Marketing - Product Details
 @endsection
 
 
 @section('frontend_content')
 
 
-   <!--product details-->
-   <section class="container product_deatils my-5 py-5">
+    <!--product details-->
+    <section class="container product_deatils my-5 py-5">
 
-    <div class="row  mt-5">
+        <div class="row  mt-5">
 
-        <div class="col-lg-5 col-md-12 col-12">
-            <img class="img-fluid w-100 pb-1" src="{{ asset('frontend') }}/image/shoe2.jpg" id="display_img" alt="">
+            <div class="col-lg-5 col-md-12 col-12">
+                <img class="img-fluid w-100 pb-1" src="{{ asset('img_DB/product/image_one/' . $products->image_one) }}"
+                    id="display_img" alt="">
 
-            <div class="small-img-group">
-                <div class="small-img-col">
-                    <img src="{{ asset('frontend') }}/image/shoe2.jpg" width="100%" class="small-img " alt="" onclick="myFunctionimg(this)">
-                </div>
-                <div class="small-img-col">
-                    <img src="{{ asset('frontend') }}/image/t2.png" width="100%" class="small-img "  alt="" onclick="myFunctionimg(this)">
-                </div>
-                <div class="small-img-col">
-                    <img src="{{ asset('frontend') }}/image/shoe.jpg" width="100%" class="small-img " alt="" onclick="myFunctionimg(this)">
-                </div>
-                <div class="small-img-col">
-                    <img src="{{ asset('frontend') }}/image/shoe1.jpg" width="100%" class="small-img " alt="" onclick="myFunctionimg(this)">
+                <div class="small-img-group">
+                    <div class="small-img-col">
+                        <img src="{{ asset('img_DB/product/image_two/' . $products->image_two) }}" width="100%"
+                            class="small-img " alt="" onclick="myFunctionimg(this)">
+                    </div>
+                    <div class="small-img-col">
+                        <img src="{{ asset('img_DB/product/image_three/' . $products->image_three) }}" width="100%"
+                            class="small-img " alt="" onclick="myFunctionimg(this)">
+                    </div>
+                    <div class="small-img-col">
+                        <img src="{{ asset('img_DB/product/image_four/' . $products->image_four) }}" width="100%"
+                            class="small-img " alt="" onclick="myFunctionimg(this)">
+                    </div>
+                    <div class="small-img-col">
+                        <img src="{{ asset('img_DB/product/image_one/' . $products->image_one) }}" width="100%"
+                            class="small-img " alt="" onclick="myFunctionimg(this)">
+                    </div>
                 </div>
             </div>
+
+            <div class="col-lg-6 col-md-12 col-12">
+                <h6><a style="text-decoration: none;color:black;" href="{{ url('shop') }}">Shop</a> /
+                    {{ $products->category->category_name }}</h6>
+                <h2 class="mt-4">{{ $products->product_name }}</h2>
+                <h4 class="my-2"> <b>Price: </b>{{ $products->price }} TK</h4>
+
+
+                <div class="my-2">
+                    <b>Availability:</b>
+                    @if ($products->product_quantity > 0)
+                        <label class="badge bg-success" for=""><span>{{ $products->product_quantity }} </span>In
+                            stock</label>
+                    @else
+                        <label class="badge bg-danger" for="">Out of stock</label>
+                    @endif
+                </div>
+
+
+
+                <form action="{{ url('cart_add/' . $products->id) }}" method="POST">
+                    @csrf
+                    <input type="hidden" name="price" value="{{ $products->price }}">
+                    <p>
+                        <input class="my-2" style="100px!important;" name="qty" value="1" min="1" type="number">
+                    </p>
+                    <button type="submit" class="buy-btn button-style" style="width: 250px;">Buy Now <i
+                            class="fas fa-shopping-cart"></i></button>
+                </form>
+                <button class="buy-btn button-style mt-2" style="width: 250px">Wishlist <i
+                        class="fas fa-heart"></i></button>
+
+
+                <p>
+                    <a class="btn my-2" style="background: coral; color:white; width: 250px;"
+                        href="{{ url('cart') }}" role="button">Cart <i class="fal fa-shopping-bag"></i></a>
+                </p>
+
+                <h2 class="mt-5">Product Details</h2>
+                <div style="text-align: justify;">
+                    <span >{{ $products->description }}</span>
+                </div>
+            </div>
+
         </div>
 
-        <div class="col-lg-6 col-md-12 col-12">
-            <h6>Home / T-Shart</h6>
-            <h3 >Men's fashion T Shirt</h3>
-            <h2>$139.00</h2>
-            <select style="width: 150px;" class="my-3">
-                <option>Select Size</option>
-                <option>XL</option>
-                <option>XXL</option>
-                <option>Small</option>
-                <option>Large</option>
-            </select>
-            <input  style="width: 80px;"  type="number" value="1">
-            <button class="buy-btn button-style">Add To Cart <i class="fas fa-shopping-cart"></i></button>
-            <button class="buy-btn button-style">Wishlist <i class="fas fa-heart"></i></button>
-            <h4 class="my-5">Product Details</h4>
-            <span>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Optio dolore, cumque beatae expedita et
-                laborum quisquam facilis fugit in harum minus illo inventore molestiae quibusdam praesentium illum,
-                saepe autem aperiam!</span>
+    </section>
+
+
+    <!--product-->
+    <section class="featured my-5 pb-5">
+
+        <div class="container text-center mt-5 py-5">
+            <h3><strong>Our Latest Product</strong></h3>
+            <hr class="mx-auto">
+            <p>Here you can check out our new product with fair price on Online-Marketing</p>
         </div>
 
-    </div>
 
-</section>
+        <div class="row mx-auto container-fluid">
+            <ul id="autoWidth" class="cs-hidden">
 
-
-
-   <!--product-->
-   <section class="featured my-5 pb-5">
-
-    <div class="container text-center mt-5 py-5">
-      <h3><strong>Related Product</strong></h3>
-      <hr class="mx-auto">
-    </div>
-
-    <div class="row mx-auto container-fluid">
-
-     <div class="product text-center col-lg-3 col-md-6 col-12">
-        <img class="img-fluid mb-3" src="{{ asset('frontend') }}/image/shoe2.jpg"  alt="">
-        <div class="star">
-         <i class="fas fa-star"></i>
-         <i class="fas fa-star"></i>
-         <i class="fas fa-star"></i>
-         <i class="fas fa-star"></i>
-         <i class="fas fa-star"></i>
+                @foreach ($lt_products as $product)
+                    <li class="item-a">
+                        <div class="product text-center " style="width: 300px;">
+                            <a href="{{ url('product_details/' . $product->id) }}">
+                                <img class="img-fluid mb-3"
+                                    src="{{ asset('img_DB/product/image_one/' . $product->image_one) }}" alt="">
+                                <div class="star">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <h3>{{ $product->product_name }}</h3>
+                                <h6 class="p-price">Price: {{ $product->price }} TK</h6>
+                                <button class="buy-btn button-style">Details</button>
+                            </a>
+                        </div>
+                    </li>
+                @endforeach
+            </ul>
         </div>
-        <h5>Sport Boots</h5>
-        <h4 class="p-price">$92.00</h4>
-        <button class="buy-btn button-style">Buy Now</button>
-      </div>
+    </section>
+    <!--product-->
 
-      <div class="product text-center col-lg-3 col-md-6 col-12">
-       <img class="img-fluid mb-3" src="{{ asset('frontend') }}/image/shoe1.jpg" alt="">
-       <div class="star">
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star"></i>
-       </div>
-       <h5>Sport Boots</h5>
-       <h4 class="p-price">$92.00</h4>
-       <button class="buy-btn button-style">Buy Now</button>
-     </div>
-
-     <div class="product text-center col-lg-3 col-md-6 col-12">
-       <img class="img-fluid mb-3" src="{{ asset('frontend') }}/image/shoe2.jpg" alt="">
-       <div class="star">
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star"></i>
-       </div>
-       <h5>Sport Boots</h5>
-       <h4 class="p-price">$92.00</h4>
-       <button class="buy-btn button-style">Buy Now</button>
-     </div>
-
-     <div class="product text-center col-lg-3 col-md-6 col-12">
-       <img class="img-fluid mb-3" src="{{ asset('frontend') }}/image/shoe1.jpg" alt="">
-       <div class="star">
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star"></i>
-       </div>
-       <h5>Sport Boots</h5>
-       <h4 class="p-price">$92.00</h4>
-       <button class="buy-btn button-style">Buy Now</button>
-     </div>
-
-    </div>
-
-  </section>
 
 @endsection
