@@ -8,11 +8,12 @@
 
 @section('frontend_content')
 
-<style>
-    .big-hr{
-        width: 100%!important;
-    }
-</style>
+    <style>
+        .big-hr {
+            width: 100% !important;
+        }
+
+    </style>
 
     <section id="cart-home " class="mt-5 pt-5 container">
         <h2 class="font-weight-bold ">Shopping Cart</h2>
@@ -49,14 +50,20 @@
                                 <p><small> {{ $cart->price }} TK</small></p>
                             </td>
 
+                            {{-- stock or outOfStock --}}
                             <td>
-                                <form action="{{ url('cart_quantity_update/' . $cart->id) }}" method="POST">
-                                    @csrf
-                                    <input style="width: 70px; padding-left:3px;" name="qty" value="{{ $cart->qty }}"
-                                        min="1" type="number">
-                                    <button type="submit" class="btn btn-sm text-white">Update</button>
-                                </form>
+                                @if ($cart->product->product_quantity >= $cart->qty)
+                                    <form action="{{ url('cart_quantity_update/' . $cart->id) }}" method="POST">
+                                        @csrf
+                                        <input style="width: 70px; padding-left:3px;" name="qty" value="{{ $cart->qty }}"
+                                            min="1" type="number">
+                                        <button type="submit" class="btn btn-sm text-white">Update</button>
+                                    </form>
+                                @else
+                                <label class="badge bg-danger" for="">Out of stock</label>
+                                @endif
                             </td>
+
 
                             <td>
                                 <p><small> {{ $cart->price * $cart->qty }} TK</small></p>
@@ -70,10 +77,10 @@
             </table>
 
         @else
-        <div class="card p-5 text-white" style="background: coral">
-            <h2 class="text-center " >Carts Not Available</h2>
-           
-        </div>
+            <div class="card p-5 text-white" style="background: coral">
+                <h2 class="text-center ">Carts Not Available</h2>
+
+            </div>
         @endif
     </section>
 
@@ -82,7 +89,6 @@
         <div class="row">
 
             @if (Session::has('discount'))
-
             @else
                 <div class="coupon col-lg-6 col-md-6 col-12 mb-5">
                     <div class="border">
@@ -114,7 +120,8 @@
                             <div class="d-flex justify-content-between  mx-3">
                                 <h6>Discount Name</h6>
                                 <p>{{ session()->get('discount')['discount_name'] }}
-                                    <a href="{{ url('discount_destroy') }}"><span style="color: coral;  text-decoration: none;">X</span> </a>
+                                    <a href="{{ url('discount_destroy') }}"><span
+                                            style="color: coral;  text-decoration: none;">X</span> </a>
                                 </p>
                             </div>
                             <div class="d-flex justify-content-between  mx-3">
@@ -129,7 +136,7 @@
                                 <p> <strong>{{ $subtotal - session()->get('discount')['discount_amount'] }}</strong></p>
                             </div>
                         </div>
-                    
+
                     @else
                         <div class="d-flex justify-content-between my-3 mx-3">
                             <h6><strong> Total</strong></h6>
@@ -138,7 +145,8 @@
                     @endif
 
                     <div class=" text-right my-4 mx-3 ">
-                        <a class="button-style" style="text-decoration: none" href="{{url('checkout')}}">PROCEED TO CHECKOUT</a>
+                        <a class="button-style" style="text-decoration: none" href="{{ url('checkout') }}">PROCEED TO
+                            CHECKOUT</a>
                     </div>
 
                 </div>

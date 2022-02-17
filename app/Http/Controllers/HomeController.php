@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -23,8 +24,9 @@ class HomeController extends Controller
                 return view('frontend.index',compact('products','categories','products_old'));
             }else
             {
-                //return view('admin.index');
-                return view('admin.index');
+            // =================== Order ==========================
+                $orders = Order::where('status',0)->latest()->paginate(10);
+                return view('admin.order.index',compact('orders'));
             }
         }
         else

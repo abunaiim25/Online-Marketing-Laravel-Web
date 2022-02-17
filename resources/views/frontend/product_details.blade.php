@@ -7,8 +7,6 @@
 
 
 @section('frontend_content')
-
-
     <!--product details-->
     <section class="container product_deatils my-5 py-5">
 
@@ -45,13 +43,14 @@
                 <h4 class="my-2"> <b>Price: </b>{{ $products->price }} TK</h4>
 
 
+                {{--stock or outOfStock--}}{{--cart,CheckoutController,shop,OrderController--}}
                 <div class="my-2">
                     <b>Availability:</b>
                     @if ($products->product_quantity > 0)
                         <label class="badge bg-success" for=""><span>{{ $products->product_quantity }} </span>In
-                            stock</label>
+                            Stock</label>
                     @else
-                        <label class="badge bg-danger" for="">Out of stock</label>
+                        <label class="badge bg-danger" for="">Out Of Stock</label>
                     @endif
                 </div>
 
@@ -63,8 +62,13 @@
                     <p>
                         <input class="my-2" style="100px!important;" name="qty" value="1" min="1" type="number">
                     </p>
-                    <button type="submit" class="buy-btn button-style" style="width: 250px;">Buy Now <i
-                            class="fas fa-shopping-cart"></i></button>
+
+                    {{--stock or outOfStock--}}
+                    @if ($products->product_quantity > 0)
+                        <button type="submit" class="buy-btn button-style" style="width: 250px;">Buy Now <i
+                                class="fas fa-shopping-cart"></i></button>
+                    @endif
+
                 </form>
                 <button class="buy-btn button-style mt-2" style="width: 250px">Wishlist <i
                         class="fas fa-heart"></i></button>
@@ -77,7 +81,7 @@
 
                 <h2 class="mt-5">Product Details</h2>
                 <div style="text-align: justify;">
-                    <span >{{ $products->description }}</span>
+                    <span>{{ $products->description }}</span>
                 </div>
             </div>
 
@@ -123,6 +127,4 @@
         </div>
     </section>
     <!--product-->
-
-
 @endsection

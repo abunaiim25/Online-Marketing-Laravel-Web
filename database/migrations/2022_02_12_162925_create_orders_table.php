@@ -21,6 +21,7 @@ class CreateOrdersTable extends Migration
             $table->string('total');
             $table->string('subtotal');
             $table->integer('discount_percentage')->nullable();
+            $table->tinyInteger('status')->default('0');
             $table->timestamps();
         });
     }

@@ -8,7 +8,7 @@ Admin - Product Add
 
 <div class="sl-mainpanel m-4 ">
     <nav class="breadcrumb sl-breadcrumb">
-        <a class="breadcrumb-item" href="index.html">Admin</a>
+        <a class="breadcrumb-item" href="#">Admin</a>
         <span class="breadcrumb-item active text-white">Add Products</span>
     </nav>
 

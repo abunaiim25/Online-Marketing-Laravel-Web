@@ -14,7 +14,6 @@
 
 
 @section('frontend_content')
-
     <section id="cart-home " class="mt-5  pt-5 container">
         <h2 class="font-weight-bold ">Checkout</h2>
         <hr>
@@ -32,90 +31,96 @@
 
                     <div class="row">
 
+
                         <div class="col-lg-8 col-md-6 col-12 mt-4">
                             <h3 class="mb-3"><strong>Shipping Address</strong></h3>
-                            <div class="row">
+                            <div class="card p-3"  style="background: blanchedalmond">
+                                <div class="row">
 
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label class="form-control-label">Name: <span
-                                                class="text-danger">*</span></label>
-                                        <input class="form-control bg-white " style="color: black" type="text"
-                                            name="shipping_name" placeholder="name" value="{{ Auth::user()->name }}">
-                                        @error('shipping_name')
-                                            <strong class="text-danger">{{ $message }}</strong>
-                                        @enderror
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="form-control-label">Name: <span
+                                                    class="text-danger">*</span></label>
+                                            <input class="form-control bg-white " style="color: black" type="text"
+                                                name="shipping_name" placeholder="name" value="{{ Auth::user()->name }}" readonly>
+                                            @error('shipping_name')
+                                                <strong class="text-danger">{{ $message }}</strong>
+                                            @enderror
+                                        </div>
                                     </div>
-                                </div>
 
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label class="form-control-label">Email: <span
-                                                class="text-danger">*</span></label>
-                                        <input class="form-control bg-white " style="color: black" type="text"
-                                            name="shipping_email" placeholder="email" value="{{ Auth::user()->email }}">
-                                        @error('shipping_email')
-                                            <strong class="text-danger">{{ $message }}</strong>
-                                        @enderror
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="form-control-label">Email: <span
+                                                    class="text-danger">*</span></label>
+                                            <input class="form-control bg-white " style="color: black" type="text"
+                                                name="shipping_email" placeholder="email"
+                                                value="{{ Auth::user()->email }}" readonly>
+                                            @error('shipping_email')
+                                                <strong class="text-danger">{{ $message }}</strong>
+                                            @enderror
+                                        </div>
                                     </div>
-                                </div>
 
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label class="form-control-label">Phone:<span
-                                                class="text-danger">*</span></label>
-                                        <input class="form-control bg-white " style="color: black" type="text"
-                                            name="shipping_phone" placeholder="phone">
-                                        @error('shipping_phone')
-                                            <strong class="text-danger">{{ $message }}</strong>
-                                        @enderror
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="form-control-label">Phone:<span
+                                                    class="text-danger">*</span></label>
+                                            <input class="form-control bg-white " style="color: black" type="text"
+                                                name="shipping_phone" placeholder="phone">
+                                            @error('shipping_phone')
+                                                <strong class="text-danger">{{ $message }}</strong>
+                                            @enderror
+                                        </div>
                                     </div>
-                                </div>
 
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label class="form-control-label">Address: <span
-                                                class="text-danger">*</span></label>
-                                        <input class="form-control bg-white " style="color: black" type="text"
-                                            name="address" placeholder="address">
-                                        @error('address')
-                                            <strong class="text-danger">{{ $message }}</strong>
-                                        @enderror
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="form-control-label">Address: <span
+                                                    class="text-danger">*</span></label>
+                                            <input class="form-control bg-white " style="color: black" type="text"
+                                                name="address" placeholder="address">
+                                            @error('address')
+                                                <strong class="text-danger">{{ $message }}</strong>
+                                            @enderror
+                                        </div>
                                     </div>
-                                </div>
 
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label class="form-control-label">Country/State: <span
-                                                class="text-danger">*</span></label>
-                                        <input class="form-control bg-white " style="color: black" type="text" name="state"
-                                            placeholder="country/state">
-                                        @error('state')
-                                            <strong class="text-danger">{{ $message }}</strong>
-                                        @enderror
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="form-control-label">Country/State: <span
+                                                    class="text-danger">*</span></label>
+                                            <input class="form-control bg-white " style="color: black" type="text"
+                                                name="state" placeholder="country/state">
+                                            @error('state')
+                                                <strong class="text-danger">{{ $message }}</strong>
+                                            @enderror
+                                        </div>
                                     </div>
-                                </div>
 
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label class="form-control-label">Post Code/ZIP: <span
-                                                class="text-danger">*</span></label>
-                                        <input class="form-control bg-white " style="color: black" type="text"
-                                            name="post_code" placeholder="post code/zip">
-                                        @error('post_code')
-                                            <strong class="text-danger">{{ $message }}</strong>
-                                        @enderror
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="form-control-label">Post Code/ZIP: <span
+                                                    class="text-danger">*</span></label>
+                                            <input class="form-control bg-white " style="color: black" type="text"
+                                                name="post_code" placeholder="post code/zip">
+                                            @error('post_code')
+                                                <strong class="text-danger">{{ $message }}</strong>
+                                            @enderror
+                                        </div>
                                     </div>
-                                </div>
 
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Something write about shopping if any (optional):</label>
-                                        <textarea style="color:black" rows="3" name="description" class="form-control bg-white " id="exampleInputEmail1" cols="5" ></textarea>
-        
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Something write about shopping if any
+                                                (optional):</label>
+                                            <textarea style="color:black" rows="3" name="description"
+                                                class="form-control bg-white " id="exampleInputEmail1" cols="5"></textarea>
+
+                                        </div>
                                     </div>
-                                </div>
 
+                                </div>
                             </div>
 
                         </div>
@@ -173,8 +178,8 @@
                                     <div class="checkout__input__checkbox">
                                         <label for="payment">
                                             <p><small> HansCash</small>
-                                                <input type="checkbox" id="payment" value="handcash" name="payment_type"
-                                                    style="color: black" >
+                                                <input type="checkbox" id="payment" value="HandCash" name="payment_type"
+                                                    style="color: black">
                                                 <span class="checkmark  @error('payment_type') is-invalid @enderror"></span>
                                             </p>
 
@@ -187,7 +192,7 @@
                                     <div class="checkout__input__checkbox">
                                         <label for="payment">
                                             <p><small> OnlineCash</small>
-                                                <input type="checkbox" id="online_cash" value="online_cash"
+                                                <input type="checkbox" id="online_cash" value="OnlineCash"
                                                     name="payment_type" style="color: black">
                                                 <span class="checkmark  @error('payment_type') is-invalid @enderror"></span>
                                             </p>
@@ -212,5 +217,4 @@
         </div>
     </section>
     <!-- Checkout Section End -->
-
 @endsection

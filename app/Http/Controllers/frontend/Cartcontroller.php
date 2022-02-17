@@ -14,7 +14,7 @@ class CartController extends Controller
 
     //===============cart_add=================
     public function cart_add(Request $request, $id)
-   {
+   { 
         $check = Cart::where('product_id',$id)->where('user_id', Auth::id())->where('user_ip',request()->ip())->first();
         if ($check) {
            // Cart::where('product_id',$id)->where('user_ip',request()->ip())->increment('qty');

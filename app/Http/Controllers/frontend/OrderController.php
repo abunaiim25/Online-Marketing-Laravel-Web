@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Cart;
 use App\Models\Order;
 use App\Models\OrderItem;
+use App\Models\Product;
 use App\Models\Shipping;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Session;
@@ -32,14 +33,18 @@ class OrderController extends Controller
 
 
         $carts = Cart::where('user_id', Auth::id())->where('user_ip', request()->ip())->latest()->get();
-        foreach ($carts as $cart)
-         {
+        foreach ($carts as $cart) {
             OrderItem::insert([
                 'order_id' => $order_id,
                 'product_id' => $cart->product_id,
                 'product_qty' => $cart->qty,
                 'created_at' => Carbon::now(),
             ]);
+
+            /*stock or outOfStock */
+            $prod = Product::where('id', $cart->product_id)->first();
+            $prod->product_quantity = $prod->product_quantity - $cart->qty;
+            $prod->update();
         }
 
 

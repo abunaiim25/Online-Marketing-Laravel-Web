@@ -3,6 +3,7 @@
 use App\Http\Controllers\admin\BrandController;
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\DiscountController;
+use App\Http\Controllers\admin\EmailController;
 use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\frontend\BlogController;
 use App\Http\Controllers\frontend\ShopController;
@@ -10,6 +11,7 @@ use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth; /*add*/
 use App\Http\Controllers\admin\Image;
+use App\Http\Controllers\admin\OrderadminController;
 use App\Http\Controllers\frontend\CartController;
 use App\Http\Controllers\frontend\CheckoutController;
 use App\Http\Controllers\frontend\OrderController;
@@ -76,6 +78,16 @@ Route::post('admin_update_discount/{id}',[DiscountController::class,'update']);
 Route::get('admin_discount_delete/{id}',[DiscountController::class,'Delete']);
 Route::get('admin_discount_inactive/{id}',[DiscountController::class,'Inactive']);
 Route::get('admin_discount_active/{id}',[DiscountController::class,'Active']);
+
+//===========admin Order section================
+Route::get('admin_orders_view/{id}',[OrderadminController::class,'admin_orders_view']);
+Route::get('admin_orders_delete/{id}',[OrderadminController::class,'admin_orders_delete']);
+Route::PUT('update_order_status/{id}',[OrderadminController::class,'update_order_status']);
+Route::get('order_status_history',[OrderadminController::class,'order_status_history']);
+
+//==================send mail===================
+Route::get('/email_view/{id}',[EmailController::class,'email_view']);
+Route::post('/send_email/{id}',[EmailController::class,'send_email']);
 
 });
 

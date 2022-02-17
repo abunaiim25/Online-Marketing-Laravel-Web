@@ -1,18 +1,17 @@
 @extends('layouts.admin_layout')
 
 @section('title')
-    Admin - Product Manage
+    Admin - Dashboard
 @endsection
 
 
 
 @section('admin_content')
 
-
     <div class="sl-mainpanel m-4">
         <nav class="breadcrumb sl-breadcrumb">
             <a class="breadcrumb-item" href="#">Admin</a>
-            <span class="breadcrumb-item active text-white">Manage Product</span>
+            <span class="breadcrumb-item active text-white">Order</span>
         </nav>
 
         <div class="sl-pagebody">
@@ -56,77 +55,79 @@
                     @endif
 
                     <div class="card p-4" style="overflow: auto">
-                        <h6 class="card-body-title">Products List</h6>
+
+                        
+                        <div class="mb-3" style="display: flex; justify-content: space-between;">
+                            <div>
+                                <h6 class="card-body-title">Order List</h6>
+                            </div>
+                            <div>
+                                <a href="{{ 'order_status_history' }}" class="btn btn-success">Order History</a>
+                            </div>
+                        </div>
+                      
+
                         <div class="table-wrapper" style="overflow: auto">
 
-
-                            @if ($products->count() > 0)
+                            @if ($orders->count() > 0)
                                 <div class="product">
                                     <table width="100%" class="table display responsive nowrap text-white">
                                         <thead>
                                             <tr>
+                                            <tr>
                                                 <th>Sl</th>
-                                                <th>Product Image Here</th>
-                                                <th>Product Name</th>
-                                                <th>Product Quantity</th>
-                                                <th>Category</th>
-                                                <th>Price</th>
+                                                <th>Odrer Date</th>
+                                                <th>Email</th>
+                                                <th>Phone</th>
+                                                <th>Invoice No</th>
+                                                <th>Payment Type</th>
+                                                <th>Total</th>
+                                                <th>Discount</th>
                                                 <th>Status</th>
                                                 <th>Action</th>
+                                             
+                                            </tr>
                                             </tr>
                                         </thead>
 
                                         <tbody>
 
-                                            <?php $i = $products->perPage() * ($products->currentPage() - 1); ?>
+                                            <?php $i = $orders->perPage() * ($orders->currentPage() - 1); ?>
 
-                                            @foreach ($products as $row)
+                                            @foreach ($orders as $row)
                                                 <tr>
-                                                    <td> <?php $i++; ?> {{ $i }}</td>
+                                                    <td><?php $i++; ?> {{ $i }}</td>
+                                                    <td>{{ $row->created_at->diffForHumans() }}</td>
+                                                    <td>{{$row->user->email}}</td>
+                                                    <td>{{$row->user->phone}}</td>
+                                                    <td>#{{ $row->invoice_no }}</td>
+                                                    <td>{{ $row->payment_type }}</td>
+                                                    <td>{{ $row->total }} TK</td>
                                                     <td>
-                                                        <img class="img-fluid" style="width: 150px; height:150px;"
-                                                            src="{{ asset('img_DB/product/image_one/' . $row->image_one) }}"
-                                                            alt="">
-                                                    </td>
-                                                    <td>{{ $row->product_name }}</td>
-                                                    <td>{{ $row->product_quantity }}</td>
-                                                    <td>{{ $row->category->category_name }}</td>{{-- $row->category_id --}}
-                                                    <td>{{ $row->price }}</td>
-                                                    <td>
-                                                        @if ($row->status == 1)
-                                                            <span class="badge badge-success">Active</span>
+                                                        @if ($row->discount_percentage == null)
+                                                            <span class="badge badge-danger">No</span>
                                                         @else
-                                                            <span class="badge badge-danger">Inactive</span>
+                                                            <span class="badge badge-success">Yes</span>
                                                         @endif
                                                     </td>
+                                                    <td>{{ $row->status == '0' ? 'Pending' : 'Completed' }}</td>
                                                     <td>
-                                                        <a href="{{ url('admin_products_edit/' . $row->id) }}"
+                                                        <a href="{{ url('admin_orders_view/' . $row->id) }}"
                                                             class="btn btn-sm btn-success"><i
-                                                                class="fa fa-pencil"></i></a>
-
-                                                        <a href="{{ url('admin_products_delete/' . $row->id) }}"
+                                                                class="fa fa-eye"></i></a>
+                                                        <a href="{{ url('admin_orders_delete/' . $row->id) }}"
                                                             class="btn btn-sm btn-danger"
-                                                            onclick="return confirm('Are You Sure To Delete?')"><i
+                                                            onclick="return confirm('Are you shure to delete?')"><i
                                                                 class="fa fa-trash"></i></a>
-
-                                                        @if ($row->status == 1)
-                                                            <a href="{{ url('admin_products_inactive/' . $row->id) }}"
-                                                                class="btn btn-sm btn-danger"><i
-                                                                    class="fa fa-arrow-down"></i></a>
-                                                        @else
-                                                            <a href="{{ url('admin_products_active/' . $row->id) }}"
-                                                                class="btn btn-sm btn-success"><i
-                                                                    class="fa fa-arrow-up"></i></a>
-                                                        @endif
                                                     </td>
+                                                  
                                                 </tr>
                                             @endforeach
-
                                         </tbody>
                                     </table>
                                 </div>
                             @else
-                                <h2 class="text-center p-5">Product Not Available</h2>
+                                <h2 class="text-center p-5">Orders Not Available</h2>
                             @endif
                         </div><!-- table-wrapper -->
                     </div><!-- card -->
@@ -139,7 +140,7 @@
 
         <div class="d-flex mt-5">
             {{-- (paginate) ->Providers\AppServiceProvider.php --}}
-            {{ $products->links() }}
+            {{ $orders->links() }}
             {{-- {{$appoint->onEachSide(1)-> links()}} --}}
         </div>
     </div>
