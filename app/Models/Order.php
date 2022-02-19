@@ -10,7 +10,7 @@ class Order extends Model
 {
     use HasFactory;
 
-    //protected $guarded = [];
+    protected $guarded = [];
 
     use Notifiable;//change
 

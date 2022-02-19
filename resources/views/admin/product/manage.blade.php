@@ -11,8 +11,7 @@
 
     <div class="sl-mainpanel m-4">
         <nav class="breadcrumb sl-breadcrumb">
-            <a class="breadcrumb-item" href="#">Admin</a>
-            <span class="breadcrumb-item active text-white">Manage Product</span>
+            <p>Admin Panel / Manage Product</p>
         </nav>
 
         <div class="sl-pagebody">

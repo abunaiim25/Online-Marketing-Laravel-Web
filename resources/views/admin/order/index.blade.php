@@ -10,8 +10,8 @@
 
     <div class="sl-mainpanel m-4">
         <nav class="breadcrumb sl-breadcrumb">
-            <a class="breadcrumb-item" href="#">Admin</a>
-            <span class="breadcrumb-item active text-white">Order</span>
+            <p>Admin Panel / Order </p>
+         
         </nav>
 
         <div class="sl-pagebody">

@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth; /*add*/
 use App\Http\Controllers\admin\Image;
 use App\Http\Controllers\admin\OrderadminController;
+use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\frontend\CartController;
 use App\Http\Controllers\frontend\CheckoutController;
 use App\Http\Controllers\frontend\OrderController;
@@ -89,6 +90,12 @@ Route::get('order_status_history',[OrderadminController::class,'order_status_his
 Route::get('/email_view/{id}',[EmailController::class,'email_view']);
 Route::post('/send_email/{id}',[EmailController::class,'send_email']);
 
+//================admin_user=====================
+Route::get('users',[UserController::class,'users']);
+Route::get('admins',[UserController::class,'admins']);
+Route::get('usertype_delete/{id}',[UserController::class,'Delete']);
+Route::get('usertype_edit/{id}',[UserController::class,'edit']);
+Route::post('admin_update_user/{id}',[UserController::class,'update']);
 });
 
 

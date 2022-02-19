@@ -74,6 +74,15 @@
     </li>
 
     <li class="nav-item menu-items">
+      <a class="nav-link" href="{{url('users')}}"  >
+        <span class="menu-icon">
+          <i class="mdi mdi-playlist-play"></i>
+        </span>
+        <span class="menu-title">Users</span>
+      </a>
+    </li>
+
+    <li class="nav-item menu-items">
       <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
         <span class="menu-icon">
           <i class="mdi mdi-laptop"></i>
