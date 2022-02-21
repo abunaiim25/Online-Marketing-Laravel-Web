@@ -79,7 +79,8 @@
         @else
             <div class="card p-5 text-white" style="background: coral">
                 <h2 class="text-center ">Carts Not Available</h2>
-
+                <a class="btn float-end" style="background: coral; color:#fff" href="{{ url('shop') }}" role="button">Continue
+                    to Shopping</a>
             </div>
         @endif
     </section>

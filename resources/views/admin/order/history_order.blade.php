@@ -76,6 +76,7 @@
                                             <tr>
                                             <tr>
                                                 <th>Sl</th>
+                                                <th>Odrer Time</th>
                                                 <th>Odrer Date</th>
                                                 <th>Invoice No</th>
                                                 <th>Payment Type</th>
@@ -95,6 +96,7 @@
                                                 <tr>
                                                     <td><?php $i++; ?> {{ $i }}</td>
                                                     <td>{{ $row->created_at->diffForHumans() }}</td>
+                                                    <td>{{ date('d-m-Y', strtotime($row->created_at)) }}</td>
                                                     <td>#{{ $row->invoice_no }}</td>
                                                     <td>{{ $row->payment_type }}</td>
                                                     <td>{{ $row->total }} TK</td>

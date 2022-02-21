@@ -10,7 +10,7 @@
     <title>
         @yield('title')
     </title>
-  
+
     <link rel="shortcut icon" href="{{ asset('frontend') }}/image/logo2.png" alt="" />
 
     <link rel="stylesheet" href="{{ asset('frontend') }}/css/style_index.css">
@@ -76,7 +76,6 @@
     @if (session('status'))
         <script>
             swal("{{ session('status') }}");
-            
         </script>
     @endif
 

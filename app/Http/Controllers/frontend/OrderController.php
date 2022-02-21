@@ -12,6 +12,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class OrderController extends Controller
 {
@@ -66,5 +67,51 @@ class OrderController extends Controller
 
         Cart::where('user_id', Auth::id())->where('user_ip', request()->ip())->delete();
         return Redirect()->to('/')->with('status', 'Your order successfully done. We will contact as soon as possible, Thank you.');
+    }
+
+
+    //===============my_orders======================
+    public function my_orders()
+    {
+        $orders = Order::where('user_id', Auth::id())->latest()->paginate(10);
+        return view('frontend.order.my_order', compact('orders'));
+    }
+
+    public function my_orders_view($id)
+    {
+        $order = Order::findOrFail($id);
+        $orderItems = OrderItem::where('order_id', $id)->get();
+        $shipping = Shipping::where('order_id', $id)->first();
+        return view('frontend.order.my_order_view', compact('order', 'orderItems', 'shipping'));
+    }
+
+    public function my_orders_delete($id)
+    {
+        Order::findOrFail($id)->delete();
+        return Redirect()->back()->with('delete', 'Order Deleted');
+    }
+
+
+    public function my_shipping_edit($id)
+    {
+        $order = Order::findOrFail($id);
+        $shipping = Shipping::where('order_id', $id)->first();
+        return view('frontend.order.edit', compact('order', 'shipping'));
+    }
+
+    public function update_my_shipping(Request $request, $id){      
+
+        Shipping::find($id)->update([
+            'shipping_name' => $request->shipping_name,
+            'shipping_email' => $request->shipping_email,
+            'shipping_phone' => $request->shipping_phone,
+            'address' => $request->address,
+            'state' => $request->state,
+            'post_code' => $request->post_code,
+            'description' => $request->description,
+            'updated_at' => Carbon::now()
+        ]);
+
+        return Redirect::to('my_orders')->with('status','Shipping Updated Successfully');
     }
 }

@@ -76,6 +76,7 @@
                                             <tr>
                                             <tr>
                                                 <th>Sl</th>
+                                                <th>Odrer Time</th>
                                                 <th>Odrer Date</th>
                                                 <th>Email</th>
                                                 <th>Phone</th>
@@ -98,6 +99,7 @@
                                                 <tr>
                                                     <td><?php $i++; ?> {{ $i }}</td>
                                                     <td>{{ $row->created_at->diffForHumans() }}</td>
+                                                    <td>{{ date('d-m-Y', strtotime($row->created_at)) }}</td>
                                                     <td>{{$row->user->email}}</td>
                                                     <td>{{$row->user->phone}}</td>
                                                     <td>#{{ $row->invoice_no }}</td>

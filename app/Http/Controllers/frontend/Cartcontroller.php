@@ -84,6 +84,7 @@ public function cart_destroy($id){
            session()->forget('discount');
            return Redirect()->back()->with('status','Discount Removed Success');
         }
-
     }
+
+
 }

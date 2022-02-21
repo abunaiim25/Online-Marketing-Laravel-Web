@@ -84,3 +84,5 @@ for(let i=0; i<indicator.length; i++)
 
     }
 }
+
+

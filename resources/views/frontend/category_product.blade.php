@@ -2,7 +2,7 @@
 
 
 @section('title')
-    Online Marketing - Blog
+    Online Marketing - Category Wise
 @endsection
 
 

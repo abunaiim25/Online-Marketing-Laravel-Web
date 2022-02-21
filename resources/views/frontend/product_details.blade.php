@@ -43,7 +43,7 @@
                 <h4 class="my-2"> <b>Price: </b>{{ $products->price }} TK</h4>
 
 
-                {{--stock or outOfStock--}}{{--cart,CheckoutController,shop,OrderController--}}
+                {{-- stock or outOfStock --}}{{-- cart,CheckoutController,shop,OrderController --}}
                 <div class="my-2">
                     <b>Availability:</b>
                     @if ($products->product_quantity > 0)
@@ -63,19 +63,19 @@
                         <input class="my-2" style="100px!important;" name="qty" value="1" min="1" type="number">
                     </p>
 
-                    {{--stock or outOfStock--}}
+                    {{-- stock or outOfStock --}}
                     @if ($products->product_quantity > 0)
-                        <button type="submit" class="buy-btn button-style" style="width: 250px;">Buy Now <i
+                        <button type="submit" class="buy-btn button-style" style="width: 250px; height:45px; border-radius:4px">Buy Now <i
                                 class="fas fa-shopping-cart"></i></button>
                     @endif
-
                 </form>
-                <button class="buy-btn button-style mt-2" style="width: 250px">Wishlist <i
-                        class="fas fa-heart"></i></button>
 
+                <a class="btn my-2 buy-btn button-style" style="background: coral; color:white; width: 250px; height:45px"
+                    href="{{ url('add_to_wishlist/' . $products->id) }}" role="button">Wishlist <i
+                        class="fas fa-heart"></i></a>
 
                 <p>
-                    <a class="btn my-2" style="background: coral; color:white; width: 250px;"
+                    <a class="btn" style="background: coral; color:white; width: 250px;"
                         href="{{ url('cart') }}" role="button">Cart <i class="fal fa-shopping-bag"></i></a>
                 </p>
 

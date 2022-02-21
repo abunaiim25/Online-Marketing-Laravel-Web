@@ -16,6 +16,7 @@ use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\frontend\CartController;
 use App\Http\Controllers\frontend\CheckoutController;
 use App\Http\Controllers\frontend\OrderController;
+use App\Http\Controllers\frontend\WishlistController;
 
 /*
 |--------------------------------------------------------------------------
@@ -112,6 +113,8 @@ Route::get('category_product_show/{id}',[ShopController::class,'category_product
 Route::get('blog',[BlogController::class,'blog_page']);
 
 
+
+//=============auth check===========================
 Route::middleware(['auth'])->group(function (){
     
 //================Frontend Cart========================
@@ -130,4 +133,18 @@ Route::get('checkout',[CheckoutController::class,'index']);
 Route::post('place_order',[OrderController::class,'place_order']);
 Route::get('order_success',[OrderController::class,'order_success']);
 
+//============== My order ===================
+Route::get('my_orders',[OrderController::class,'my_orders']);
+Route::get('my_orders_delete/{id}',[OrderController::class,'my_orders_delete']);
+Route::get('my_orders_view/{id}',[OrderController::class,'my_orders_view']);
+Route::get('my_shipping_edit/{id}',[OrderController::class,'my_shipping_edit']);
+Route::post('update_my_shipping/{id}',[OrderController::class,'update_my_shipping']);
+
+//=======================Wishlist==========================
+Route::get('add_to_wishlist/{id}',[WishlistController::class,'add_to_wishlist']);
+Route::get('wishlist',[WishlistController::class,'wishlist']);     
+Route::get('wishlist_destroy/{id}',[WishlistController::class,'wishlist_destroy']);
+
+
 });
+
