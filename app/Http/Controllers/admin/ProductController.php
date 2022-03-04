@@ -8,7 +8,7 @@ use App\Models\Category;
 use App\Models\Product;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\File;//for delete imag
+use Illuminate\Support\Facades\File;//for delete image
 
 
 class ProductController extends Controller

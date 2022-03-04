@@ -17,10 +17,11 @@
     <link rel="stylesheet" href="{{ asset('frontend') }}/css/style_shop.css">
     <link rel="stylesheet" href="{{ asset('frontend') }}/css/style_blog.css">
     <link rel="stylesheet" href="{{ asset('frontend') }}/css/style_cart.css">
+    <link rel="stylesheet" href="{{ asset('frontend') }}/css/style_about.css">
     <link rel="stylesheet" href="{{ asset('frontend') }}/css/style_product_details.css">
 
 
-    <!--stackpath bootstrap-->
+    <!--stackpath bootstrap --------its very good-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
         integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <!--bootstrap-->

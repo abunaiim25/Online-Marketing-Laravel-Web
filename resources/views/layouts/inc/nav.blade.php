@@ -22,11 +22,11 @@
                     <a class="nav-link " aria-current="page" href="{{ url('shop') }}">Shop</a>
                 </li>
 
-                <li class="nav-item   {{ Request::is('blog') ? 'active' : '' }}">
-                    <a class="nav-link " aria-current="page" href="{{ url('blog') }}">Blog</a>
+                <li class="nav-item   {{ Request::is('news') ? 'active' : '' }}">
+                    <a class="nav-link " aria-current="page" href="{{ url('news') }}">News</a>
                 </li>
 
-                <li class="nav-item ">
+                <li class="nav-item {{ Request::is('about') ? 'active' : '' }}">
                     <a class="nav-link " aria-current="page" href="{{ url('about') }}">About</a>
                 </li>
 
@@ -36,7 +36,7 @@
                         Pages
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li class="nav-item  ">
+                        <li class="nav-item  {{ Request::is('contact') ? 'active' : '' }}">
                             <a class="nav-link " aria-current="page" href="{{ url('contact') }}">Contact Us</a>
                         </li>
         
@@ -48,7 +48,6 @@
 
                 {{--count--}}
             @php
-              
                 $quantity = App\Models\Cart::where('user_id', Auth::id())->where('user_ip', request()->ip())->sum('qty');
                 $wishqty = App\Models\Wishlist::where('user_id', Auth::id())->where('user_id', Auth::id())->get();
              @endphp

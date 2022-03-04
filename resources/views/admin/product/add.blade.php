@@ -146,7 +146,9 @@ Admin - Product Add
                                 <div class="form-group">
                                     <label class="form-control-label">Main thambnail: <span
                                             class="text-danger">*</span></label>
-                                    <input class="form-control" type="file" name="image_one">
+                                            
+                                            <img id="output" style="height:250px; background:greenyellow; color:black;"  alt="Image not here" >
+                                    <input class="form-control" type="file" name="image_one" onchange="loadFile(event)">
                                     @error('image_one')
                                         <strong class="text-danger">{{ $message }}</strong>
                                     @enderror
@@ -157,7 +159,9 @@ Admin - Product Add
                                 <div class="form-group">
                                     <label class="form-control-label">Image Two: <span
                                             class="text-danger">*</span></label>
-                                    <input class="form-control" type="file" name="image_two">
+
+                                            <img id="output2" style="height:250px; background:greenyellow; color:black;"  alt="Image not here">
+                                    <input class="form-control" type="file" name="image_two" onchange="loadFile2(event)">
                                     @error('image_two')
                                         <strong class="text-danger">{{ $message }}</strong>
                                     @enderror
@@ -168,7 +172,9 @@ Admin - Product Add
                                 <div class="form-group">
                                     <label class="form-control-label">Image Three: <span
                                             class="text-danger">*</span></label>
-                                    <input class="form-control" type="file" name="image_three">
+
+                                            <img id="output3" style="height:250px; background:greenyellow; color:black;"  alt="Image not here">
+                                    <input class="form-control" type="file" name="image_three" onchange="loadFile3(event)">
                                     @error('image_three')
                                         <strong class="text-danger">{{ $message }}</strong>
                                     @enderror
@@ -177,9 +183,10 @@ Admin - Product Add
 
                             <div class="col-lg-3">
                                 <div class="form-group">
-                                    <label class="form-control-label">Image Four: <span
-                                            class="text-danger">*</span></label>
-                                    <input class="form-control" type="file" name="image_four">
+                                    <label class="form-control-label">Image Four: <span class="text-danger">*</span></label>
+
+                                    <img id="output4" style="height:250px; background:greenyellow; color:black;"  alt="Image not here">
+                                    <input class="form-control" type="file" name="image_four" onchange="loadFile4(event)">
                                     @error('image_four')
                                         <strong class="text-danger">{{ $message }}</strong>
                                     @enderror

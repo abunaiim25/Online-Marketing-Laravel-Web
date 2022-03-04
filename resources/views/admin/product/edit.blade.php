@@ -19,7 +19,8 @@
     <div class="container">
         <div class="sl-mainpanel m-4">
             <nav class="breadcrumb sl-breadcrumb">
-                <a class="breadcrumb-item  text-white" style="text-decoration: none" href="{{url('admin_products_manage')}}">Manage Product</a>
+                <a class="breadcrumb-item  text-white" style="text-decoration: none"
+                    href="{{ url('admin_products_manage') }}">Manage Product</a>
                 <span class="breadcrumb-item active text-white">Product Edit</span>
             </nav>
 
@@ -30,9 +31,10 @@
                         <h3 class="card-body-title mb-3">Product Edit</h3>
 
 
-                        <form action="{{ url('admin_update_products', $product->id ) }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ url('admin_update_products', $product->id) }}" method="POST"
+                            enctype="multipart/form-data">
                             @csrf
-                            
+
 
                             <div class="form-layout">
 
@@ -138,7 +140,8 @@
                                         <div class="form-group">
                                             <label class="form-control-label">Product Slug: <span
                                                     class="text-danger">*</span></label>
-                                            <input class="form-control bg-white " style="color: black" type="text" name="product_slug"  value="{{ $product->product_slug }}"
+                                            <input class="form-control bg-white " style="color: black" type="text"
+                                                name="product_slug" value="{{ $product->product_slug }}"
                                                 placeholder="product slug">
                                             @error('product_slug')
                                                 <strong class="text-danger">{{ $message }}</strong>
@@ -166,9 +169,9 @@
                                         <div class="col-lg-3 my-2">
                                             <div class="form-group">
                                                 <label class="form-control-label">Main thambnail: <span
-                                                    class="text-danger">*</span></label>
-                                                <img src="{{ asset('img_DB/product/image_one/'.$product->image_one) }}" alt="" height="120px;"
-                                                    width="120px;">
+                                                        class="text-danger">*</span></label>
+                                                <img src="{{ asset('img_DB/product/image_one/' . $product->image_one) }}"
+                                                    alt="" height="120px;" width="120px;">
                                             </div>
                                             <div class="form-group my-1">
                                                 <input class="form-control" type="file" name="image_one">
@@ -181,9 +184,9 @@
                                         <div class="col-lg-3 my-2">
                                             <div class="form-group">
                                                 <label class="form-control-label">Image Two: <span
-                                                    class="text-danger">*</span></label>
-                                                <img src="{{ asset('img_DB/product/image_two/'.$product->image_two) }}" alt="" height="120px;"
-                                                    width="120px;">
+                                                        class="text-danger">*</span></label>
+                                                <img src="{{ asset('img_DB/product/image_two/' . $product->image_two) }}"
+                                                    alt="" height="120px;" width="120px;">
                                             </div>
                                             <div class="form-group my-1">
                                                 <input class="form-control" type="file" name="image_two">
@@ -197,9 +200,9 @@
                                         <div class="col-lg-3 my-2">
                                             <div class="form-group">
                                                 <label class="form-control-label">Image Three: <span
-                                                    class="text-danger">*</span></label>
-                                                <img src="{{ asset('img_DB/product/image_three/'.$product->image_three) }}" alt="" height="120px;"
-                                                    width="120px;">
+                                                        class="text-danger">*</span></label>
+                                                <img src="{{ asset('img_DB/product/image_three/' . $product->image_three) }}"
+                                                    alt="" height="120px;" width="120px;">
                                             </div>
                                             <div class="form-group my-1">
                                                 <input class="form-control" type="file" name="image_three">
@@ -212,9 +215,9 @@
                                         <div class="col-lg-3 my-2">
                                             <div class="form-group">
                                                 <label class="form-control-label">Image Four: <span
-                                                    class="text-danger">*</span></label>
-                                                <img src="{{ asset('img_DB/product/image_four/'.$product->image_four) }}" alt="" height="120px;"
-                                                    width="120px;">
+                                                        class="text-danger">*</span></label>
+                                                <img src="{{ asset('img_DB/product/image_four/' . $product->image_four) }}"
+                                                    alt="" height="120px;" width="120px;">
                                             </div>
                                             <div class="form-group my-1">
                                                 <input class="form-control" type="file" name="image_four">

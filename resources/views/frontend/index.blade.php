@@ -13,7 +13,7 @@
             <h5>NEW ARRIVALES</h5>
             <h1><b><span>Best Price</span> This Year</b></h1>
             <p>Shoomatic offers your very comfortable time<br>on walking and exercises</p>
-            <button class="button-style">Shop Now</button>
+            <a class="btn text-uppercase  button-style" href="{{ url('shop') }}" role="button">Shop Now</a>
         </div>
     </section>
 
@@ -82,7 +82,7 @@
                 <img class="img-fluid" src="{{ asset('frontend') }}/image/shoe.jpg" alt="">
                 <div class="details">
                     <h2>Extream Rate Sneakers</h2>
-                    <button class="text-uppercase">Shop Now</button>
+                    <a href="{{ url('shop') }}">Shopping Here</a>
                 </div>
             </div>
 
@@ -90,7 +90,7 @@
                 <img class="img-fluid" src="{{ asset('frontend') }}/image/watch.jpg" alt="">
                 <div class="details">
                     <h2>Extream Rate Sneakers</h2>
-                    <button class="text-uppercase">Shop Now</button>
+                    <a href="{{ url('news') }}">News Here</a>
                 </div>
             </div>
 
@@ -98,7 +98,7 @@
                 <img class="img-fluid" src="{{ asset('frontend') }}/image/shoe.jpg" alt="">
                 <div class="details">
                     <h2>Extream Rate Sneakers</h2>
-                    <button class="text-uppercase">Shop Now</button>
+                    <a href="{{ url('contact') }}">Contact Here</a>
                 </div>
             </div>
 
@@ -150,7 +150,7 @@
         <div class="container">
             <h4>MID SEASON'S SALE</h4>
             <h1>Autumn Collection<br>UP TO 20% OFF</h1>
-            <button class="text-uppercase  button-style">Shop Now</button>
+            <a class="btn text-uppercase  button-style" href="{{ url('shop') }}" role="button">Shop Now</a>
         </div>
     </section>
 @endsection

@@ -115,7 +115,7 @@
         <div class="container">
             <h4>MID SEASON'S SALE</h4>
             <h1>Autumn Collection<br>UP TO 20% OFF</h1>
-            <button class="text-uppercase button-style">Shop Now</button>
+            <a class="btn text-uppercase  button-style" href="{{ url('shop') }}" role="button">Shop Now</a>
         </div>
     </section>
 
