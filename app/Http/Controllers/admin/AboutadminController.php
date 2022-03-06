@@ -26,7 +26,14 @@ class AboutadminController extends Controller
         ]);
 
         $about = About::first();
-       // $about=new About;
+        if($about==NULL)
+        {
+            $about=new About;
+        }else{
+            $about = About::first();
+        }
+        //$about = About::first();
+        //$about=new About;
         $about->about_description = $request->about_description;
         $about->about_description_readmore = $request->about_description_readmore;
         $about->save();

@@ -138,6 +138,7 @@ Route::get('admin_team_delete/{id}',[AboutadminController::class,'admin_team_del
 
 //======================admin_front_control=========================
 Route::get('admin_front_control',[FrontcontrolController::class,'admin_front_control']);
+Route::post('front_control_store',[FrontcontrolController::class,'front_control_store']);
 });
 
 

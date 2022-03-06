@@ -15,7 +15,7 @@
 
 
 
-                <form action="{{ url('admin_about_store_description') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ url('front_control_store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
 
                     <div style="display: flex; justify-content: space-between;" class="mb-2">
@@ -24,7 +24,7 @@
                     </div>
 
 
-                      {{-- LOGO --}}
+                    {{-- LOGO --}}
                     <div class="card mb-3" style="background:#fff;">
                         <div class="card-header" style="background:greenyellow; color:black;"><strong> LOGO</strong>
                         </div>
@@ -46,7 +46,7 @@
                     </div>
 
 
-                     {{-- Home Background --}}
+                    {{-- Home Background --}}
                     <div class="card mb-3" style="background:#fff;">
                         <div class="card-header" style="background:greenyellow; color:black;"><strong>Home
                                 Background</strong> </div>
@@ -54,8 +54,8 @@
                         <div class="row p-3">
                             <div class="col-lg-4 col-lg-4 ">
                                 <label for="" class="text-black"><strong>Home Background Image:</strong></label>
-                                <img src="{{ asset('frontend') }}/image/bg2.jpg" alt="">
-                                <input class="form-control mt-1" type="file" name="home_bg_img">
+                                <img src="{{ asset('img_DB/front/home/' . $front->home_bg_img) }}" alt="">
+                                <input class="form-control mt-1 text-success" type="file" name="home_bg_img">
                             </div>
 
                             <div class="col-lg-8 col-lg-8 ">
@@ -64,7 +64,7 @@
                                         <label for="" class="text-black"><strong>Home Background
                                                 Text-1:</strong></label>
                                         <input type="text" name="home_bg_txt1" class="form-control bg-white mb-3"
-                                            style="color: black;" maxlength="20"
+                                            style="color: black;" maxlength="20" value="{{$front->home_bg_txt1}}"
                                             placeholder="short text (maximum 20 letters supported)">
                                     </div>
 
@@ -72,7 +72,7 @@
                                         <label for="" class="text-black"><strong>Home Background
                                                 Text-2:</strong></label>
                                         <input type="text" name="home_bg_txt2" class="form-control bg-white mb-3"
-                                            style="color: black;" maxlength="20"
+                                            style="color: black;" maxlength="20" value=" {{$front->home_bg_txt2}}"
                                             placeholder="short text (maximum 20 letters supported)">
                                     </div>
 
@@ -80,8 +80,8 @@
                                         <label for="" class="text-black"><strong>Home Background
                                                 Text-3:</strong></label>
                                         <input type="text" name="home_bg_txt3" class="form-control bg-white mb-3"
-                                            style="color: black;" maxlength="60"
-                                            placeholder="short text (maximum 60 letters supported)">
+                                            style="color: black;" maxlength="100" value=" {{$front->home_bg_txt3}}"
+                                            placeholder="short text (maximum 100 letters supported)">
                                     </div>
                                 </div>
                             </div>
@@ -103,7 +103,7 @@
                                     style="color: black;" maxlength="30"
                                     placeholder="short text (maximum 30 letters supported)">
                                 <img src="{{ asset('frontend') }}/image/bg2.jpg" alt="">
-                                <input class="form-control mt-1" type="file" name="home_new_txt1_img">
+                                <input class="form-control mt-1  text-success" type="file" name="home_new_txt1_img">
                             </div>
 
                             <div class="col-lg-4 col-lg-4 mb-3">
@@ -112,7 +112,7 @@
                                     style="color: black;" maxlength="30"
                                     placeholder="short text (maximum 30 letters supported)">
                                 <img src="{{ asset('frontend') }}/image/bg2.jpg" alt="">
-                                <input class="form-control mt-1" type="file" name="home_new_txt2_img">
+                                <input class="form-control mt-1  text-success" type="file" name="home_new_txt2_img">
                             </div>
 
                             <div class="col-lg-4 col-lg-4 mb-3">
@@ -121,7 +121,7 @@
                                     style="color: black;" maxlength="30"
                                     placeholder="short text (maximum 30 letters supported)">
                                 <img src="{{ asset('frontend') }}/image/bg2.jpg" alt="">
-                                <input class="form-control mt-1" type="file" name="home_new_txt3_img">
+                                <input class="form-control mt-1  text-success" type="file" name="home_new_txt3_img">
                             </div>
 
                         </div>
@@ -138,7 +138,7 @@
                             <div class="col-lg-4 col-lg-4 ">
                                 <label for="" class="text-black"><strong>Home Banner Image:</strong></label>
                                 <img src="{{ asset('frontend') }}/image/bg2.jpg" alt="">
-                                <input class="form-control mt-1" type="file" name="home_banner_img">
+                                <input class="form-control mt-1  text-success" type="file" name="home_banner_img">
                             </div>
 
                             <div class="col-lg-8 col-lg-8 ">
@@ -173,7 +173,7 @@
                             <div class="col-lg-4 col-lg-4 ">
                                 <label for="" class="text-black"><strong>Shop Banner Image:</strong></label>
                                 <img src="{{ asset('frontend') }}/image/bg2.jpg" alt="">
-                                <input class="form-control mt-1" type="file" name="shop_banner_img">
+                                <input class="form-control mt-1  text-success" type="file" name="shop_banner_img">
                             </div>
 
                             <div class="col-lg-8 col-lg-8 ">
@@ -199,8 +199,8 @@
                     </div>
 
 
-                     {{-- About Banner --}}
-                     <div class="card mb-3" style="background:#fff;">
+                    {{-- About Banner --}}
+                    <div class="card mb-3" style="background:#fff;">
                         <div class="card-header" style="background:greenyellow; color:black;"><strong>About
                                 Banner</strong> </div>
 
@@ -208,7 +208,7 @@
                             <div class="col-lg-4 col-lg-4 ">
                                 <label for="" class="text-black"><strong>About Banner Image:</strong></label>
                                 <img src="{{ asset('frontend') }}/image/bg2.jpg" alt="">
-                                <input class="form-control mt-1" type="file" name="about_banner_img">
+                                <input class="form-control mt-1  text-success" type="file" name="about_banner_img">
                             </div>
 
                         </div>
@@ -224,7 +224,7 @@
                             <div class="col-lg-4 col-lg-4 ">
                                 <label for="" class="text-black"><strong>Contact Banner Image:</strong></label>
                                 <img src="{{ asset('frontend') }}/image/bg2.jpg" alt="">
-                                <input class="form-control mt-1" type="file" name="contact_banner_img">
+                                <input class="form-control mt-1  text-success" type="file" name="contact_banner_img">
                             </div>
 
                         </div>
@@ -240,7 +240,7 @@
                             <div class="col-lg-4 col-lg-4 ">
                                 <label for="" class="text-black"><strong>My Order Banner Image:</strong></label>
                                 <img src="{{ asset('frontend') }}/image/bg2.jpg" alt="">
-                                <input class="form-control mt-1" type="file" name="myorder_banner_img">
+                                <input class="form-control mt-1 text-success" type="file" name="myorder_banner_img">
                             </div>
 
                             <div class="col-lg-8 col-lg-8 ">
@@ -265,6 +265,93 @@
 
                     </div>
 
+                    {{-- Footer --}}
+                    <div class="card mb-3" style="background:#fff;">
+                        <div class="card-header" style="background:greenyellow; color:black;"><strong>Footer
+                            </strong> </div>
+
+                        <div class="row p-3">
+
+                            <div class="col-lg-4">
+                                <label for="" class="text-black"><strong>Footer Address:</strong></label>
+                                <input type="text" name="footer_contact_address" class="form-control bg-white mb-3"
+                                    style="color: black;" placeholder="address">
+                            </div>
+                            <div class="col-lg-4">
+                                <label for="" class="text-black"><strong>Footer Phone:</strong></label>
+                                <input type="text" name="footer_contact_phone" class="form-control bg-white mb-3"
+                                    style="color: black;" placeholder="phone">
+                            </div>
+                            <div class="col-lg-4">
+                                <label for="" class="text-black"><strong>Footer Email:</strong></label>
+                                <input type="text" name="footer_contact_email" class="form-control bg-white mb-3"
+                                    style="color: black;" placeholder="email">
+                            </div>
+
+
+
+                            <div class="col-lg-4 col-6">
+                                <label for="" class="text-black"><strong>Our Item Image-1:</strong></label>
+                                <img src="{{ asset('frontend') }}/image/bg2.jpg" alt="">
+                                <input class="form-control mt-1  text-success" type="file" name="footer_iteam_img_1">
+                            </div>
+                            <div class="col-lg-4  col-6">
+                                <label for="" class="text-black"><strong>Our Item Image-2:</strong></label>
+                                <img src="{{ asset('frontend') }}/image/bg2.jpg" alt="">
+                                <input class="form-control mt-1  text-success" type="file" name="footer_iteam_img_2">
+                            </div>
+                            <div class="col-lg-4  col-6">
+                                <label for="" class="text-black"><strong>Our Item Image-3:</strong></label>
+                                <img src="{{ asset('frontend') }}/image/bg2.jpg" alt="">
+                                <input class="form-control mt-1  text-success" type="file" name="footer_iteam_img_3">
+                            </div>
+                            <div class="col-lg-4  col-6">
+                                <label for="" class="text-black"><strong>Our Item Image-4:</strong></label>
+                                <img src="{{ asset('frontend') }}/image/bg2.jpg" alt="">
+                                <input class="form-control mt-1  text-success" type="file" name="footer_iteam_img_4">
+                            </div>
+                            <div class="col-lg-4  col-6">
+                                <label for="" class="text-black"><strong>Our Item Image-5:</strong></label>
+                                <img src="{{ asset('frontend') }}/image/bg2.jpg" alt="">
+                                <input class="form-control mt-1  text-success" type="file" name="footer_iteam_img_5">
+                            </div>
+                            <div class="col-lg-4 col-6 ">
+                                <label for="" class="text-black"><strong>Our Item Image-6:</strong></label>
+                                <img src="{{ asset('frontend') }}/image/bg2.jpg" alt="">
+                                <input class="form-control mt-1  text-success" type="file" name="footer_iteam_img_6">
+                            </div>
+
+
+                            <div class="col-lg-6">
+                                <label for="" class="text-black"><strong>Facebook Link:</strong></label>
+                                <input type="text" name="footer_social_fb" class="form-control bg-white mb-3"
+                                    style="color: black;" placeholder="link">
+                            </div>
+                            <div class="col-lg-6">
+                                <label for="" class="text-black"><strong>Twitter Link:</strong></label>
+                                <input type="text" name="footer_social_twitter" class="form-control bg-white mb-3"
+                                    style="color: black;" placeholder="link">
+                            </div>
+                            <div class="col-lg-6">
+                                <label for="" class="text-black"><strong>LinkedIn Link:</strong></label>
+                                <input type="text" name="footer_social_linkedin" class="form-control bg-white mb-3"
+                                    style="color: black;" placeholder="link">
+                            </div>
+                            <div class="col-lg-6">
+                                <label for="" class="text-black"><strong>Instagram Link:</strong></label>
+                                <input type="text" name="footer_social_insta" class="form-control bg-white mb-3"
+                                    style="color: black;" placeholder="link">
+                            </div>
+
+                            <div class="col-lg-12">
+                                <label for="" class="text-black"><strong>Footer Description:</strong></label>
+                                <input type="text" name="footer_text" class="form-control bg-white mb-3"
+                                    style="color: black;" placeholder="footer description">
+                            </div>
+
+                        </div>
+
+                    </div>
 
                 </form>
             </div>
