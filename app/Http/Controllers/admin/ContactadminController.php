@@ -32,4 +32,19 @@ class ContactadminController extends Controller
 
         //====================contact_email_view==============================
         //EmailController
+
+
+        //searching contact
+       public function contact_search(Request $request)
+       {
+           $contact = Contact::
+           where('name','like','%'.$request->search.'%')
+           ->orWhere('email','like','%'.$request->search.'%')
+           ->orWhere('phone','like','%'.$request->search.'%')
+           ->orWhere('date','like','%'.$request->search.'%')
+           ->orWhere('message','like','%'.$request->search.'%')
+           ->paginate(10);
+           return view('admin.contact.index',compact('contact'));
+       }
 }
+

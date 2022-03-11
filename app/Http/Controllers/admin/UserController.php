@@ -14,7 +14,7 @@ class UserController extends Controller
         $users = User::where('usertype',0)->latest()->paginate(10);
         return view('admin.user.users',compact('users'));
     }
-
+    
     public function admins()
     {
         $admins = User::where('usertype',1)->latest()->paginate(10);
@@ -44,6 +44,30 @@ class UserController extends Controller
         return Redirect('users')->with('success','User Update Successfully');
     }
     
+
+   //searching users_search
+   public function users_search(Request $request)
+   {
+       $users = User::
+       where('name','like','%'.$request->search.'%')
+       ->orWhere('email','like','%'.$request->search.'%')
+       ->orWhere('phone','like','%'.$request->search.'%')
+       ->orWhere('address','like','%'.$request->search.'%')
+       ->paginate(10);
+       return view('admin.user.users',compact('users'));
+   }
+
+    //searching admins_search
+    public function admins_search(Request $request)
+    {
+        $admins = User::
+        where('name','like','%'.$request->search.'%')
+        ->orWhere('email','like','%'.$request->search.'%')
+        ->orWhere('phone','like','%'.$request->search.'%')
+        ->orWhere('address','like','%'.$request->search.'%')
+        ->paginate(10);
+        return view('admin.user.admin',compact('admins'));
+    }
 }
 
 //where('user_id', Auth::id())->

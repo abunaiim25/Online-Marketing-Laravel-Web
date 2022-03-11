@@ -7,10 +7,28 @@
 
 
 @section('frontend_content')
-    <section id="blog-home " class="mt-5 pt-5 container">
+
+<div id="blog-home " class="mt-5 pt-5 container" style="display: flex; justify-content: space-between;">
+    <div>
         <h2 class="font-weight-bold ">News</h2>
         <hr>
-    </section>
+    </div>
+
+    <div class="" style="float:right">
+        <form action="{{ url('search_news_query') }}" method="GET" class="search-form">
+            {{ csrf_field() }}
+            <div class="form-group">
+                <div style="display: flex; justify-content: space-between;">
+                    <input type="text" name="query" id="query" class="form-control mr-1"
+                        {{-- value="{{request()->input('query')}}" --}} placeholder="search news...">
+
+                    <button type="submit" class="btn text-white"> <i
+                            class="search fal fa-search"></i></button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
 
 
     <section class=" container blog mb-5">
@@ -35,17 +53,6 @@
         </div>
     </section>
 
-
-
-    <!--banner-->
-    <section id="banner" class="mt-5 pt-5 container p-5"
-        style=" background-image: url({{ asset('frontend') }}/image/shopping2.jpg); border-radius: 15px;">
-        <div class="container">
-            <h4>MID SEASON'S SALE</h4>
-            <h1>Autumn Collection<br>UP TO 20% OFF</h1>
-            <a class="btn text-uppercase  button-style" href="{{ url('shop') }}" role="button">Shop Now</a>
-        </div>
-    </section>
 
 
     <section class=" container blog mb-5">

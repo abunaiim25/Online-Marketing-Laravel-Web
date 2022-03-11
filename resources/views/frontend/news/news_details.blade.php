@@ -7,6 +7,7 @@
 
 
 @section('frontend_content')
+
     <section id="blog-home " class="my-5 pt-5 container">
         <h2 class="font-weight-bold ">News Details</h2>
         <hr>
@@ -42,12 +43,12 @@
                 <h3 class="sidebar-title"><strong>Search News</strong></h3>
                 <div class="row">
                     <div class="col-lg-10 col-md-10 col-12">
-                        <form action="{{ url('search_news') }}" method="GET" class="search-form">
+                        <form action="{{ url('search_news_query') }}" method="GET" class="search-form">
                             {{ csrf_field() }}
                             <div class="form-group">
                                 <div style="display: flex; justify-content: space-between;">
-                                    <input type="text" name="query" id="query" class="form-control mr-1"
-                                        {{-- value="{{request()->input('query')}}" --}} placeholder="Search News...">
+                                    <input type="text"  name="query" id="query" class="form-control mr-1"
+                                        {{-- value="{{request()->input('query')}}" --}} placeholder="search news...">
 
                                     <button type="submit" class="btn text-white"> <i
                                             class="search fal fa-search"></i></button>

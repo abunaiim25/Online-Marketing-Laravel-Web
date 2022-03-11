@@ -71,4 +71,14 @@ class BrandController extends Controller
         return Redirect()->back()->with('Catupdated','Brand Activated');
     }
 
+
+     //searching catagory
+     public function brand_search(Request $request)
+     {
+         $brands = Brand::
+         where('brand_name','like','%'.$request->search.'%')
+         ->paginate(10);
+         return view('admin.brand.index',compact('brands'));
+     }
+
 }

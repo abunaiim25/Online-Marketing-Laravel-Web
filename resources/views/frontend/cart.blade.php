@@ -76,6 +76,9 @@
 
             </table>
 
+            <a class="btn float-end mt-3" style="background: coral; color:#fff" href="{{ url('shop') }}" role="button">Continue
+                to Shopping</a>
+
         @else
             <div class="card p-5 text-white" style="background: coral">
                 <h2 class="text-center ">Carts Not Available</h2>

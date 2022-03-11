@@ -20,6 +20,8 @@
 
 
             <div class="col-lg-3 col-md-4 col-12 mt-4 ">
+
+
                 <div class="hero__categories">
                     <div class="hero__categories__all">
                         <i class="fa fa-bars"></i>

@@ -16,10 +16,10 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id');
-            $table->string('invoice_no');
-            $table->string('payment_type');
-            $table->string('total');
-            $table->string('subtotal');
+            $table->string('invoice_no')->nullable();
+            $table->string('payment_type')->nullable();
+            $table->string('total')->nullable();
+            $table->string('subtotal')->nullable();
             $table->integer('discount_percentage')->nullable();
             $table->tinyInteger('status')->default('0');
             $table->timestamps();

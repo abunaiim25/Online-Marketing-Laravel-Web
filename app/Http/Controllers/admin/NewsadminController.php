@@ -100,4 +100,17 @@ class NewsadminController extends Controller
     return Redirect()->back()->with('delete','News Deleted');
    }
 
+    //searching discount
+    public function news_search(Request $request)
+    {
+        $news = News::
+        where('title','like','%'.$request->search.'%')
+        ->orWhere('category','like','%'.$request->search.'%')
+        ->orWhere('place','like','%'.$request->search.'%')
+        ->orWhere('writer_name','like','%'.$request->search.'%')
+        ->orWhere('description','like','%'.$request->search.'%')
+        ->paginate(10);
+        return view('admin.news.manage',compact('news'));
+    }
+
 }

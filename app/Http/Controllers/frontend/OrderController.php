@@ -65,6 +65,7 @@ class OrderController extends Controller
             session()->forget('discount');
         }
 
+        //delete from cart
         Cart::where('user_id', Auth::id())->where('user_ip', request()->ip())->delete();
         return Redirect()->to('/')->with('status', 'Your order successfully done. We will contact as soon as possible, Thank you.');
     }

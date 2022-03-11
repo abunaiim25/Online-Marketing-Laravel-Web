@@ -33,8 +33,9 @@
 
 
                         <div class="col-lg-8 col-md-6 col-12 mt-4">
-                            <h3 class="mb-3"><strong>Shipping Address</strong></h3>
-                            <div class="card p-3"  style="background: blanchedalmond">
+                            <h3 class="mb-3"><strong>Shipping Address</strong> <small class="text-danger">(This
+                                    Form For Payment On Hand Cash)</small></h3>
+                            <div class="card p-3" style="background: blanchedalmond">
                                 <div class="row">
 
                                     <div class="col-lg-6">
@@ -42,7 +43,8 @@
                                             <label class="form-control-label">Name: <span
                                                     class="text-danger">*</span></label>
                                             <input class="form-control bg-white " style="color: black" type="text"
-                                                name="shipping_name" placeholder="name" value="{{ Auth::user()->name }}" readonly>
+                                                name="shipping_name" placeholder="name" value="{{ Auth::user()->name }}"
+                                                readonly>
                                             @error('shipping_name')
                                                 <strong class="text-danger">{{ $message }}</strong>
                                             @enderror
@@ -67,10 +69,7 @@
                                             <label class="form-control-label">Phone:<span
                                                     class="text-danger">*</span></label>
                                             <input class="form-control bg-white " style="color: black" type="text"
-                                                name="shipping_phone" placeholder="phone">
-                                            @error('shipping_phone')
-                                                <strong class="text-danger">{{ $message }}</strong>
-                                            @enderror
+                                                name="shipping_phone" placeholder="phone" required>
                                         </div>
                                     </div>
 
@@ -79,10 +78,7 @@
                                             <label class="form-control-label">Address: <span
                                                     class="text-danger">*</span></label>
                                             <input class="form-control bg-white " style="color: black" type="text"
-                                                name="address" placeholder="address">
-                                            @error('address')
-                                                <strong class="text-danger">{{ $message }}</strong>
-                                            @enderror
+                                                name="address" placeholder="address" required>
                                         </div>
                                     </div>
 
@@ -91,10 +87,7 @@
                                             <label class="form-control-label">Country/State: <span
                                                     class="text-danger">*</span></label>
                                             <input class="form-control bg-white " style="color: black" type="text"
-                                                name="state" placeholder="country/state">
-                                            @error('state')
-                                                <strong class="text-danger">{{ $message }}</strong>
-                                            @enderror
+                                                name="state" placeholder="country/state" required>
                                         </div>
                                     </div>
 
@@ -103,10 +96,7 @@
                                             <label class="form-control-label">Post Code/ZIP: <span
                                                     class="text-danger">*</span></label>
                                             <input class="form-control bg-white " style="color: black" type="text"
-                                                name="post_code" placeholder="post code/zip">
-                                            @error('post_code')
-                                                <strong class="text-danger">{{ $message }}</strong>
-                                            @enderror
+                                                name="post_code" placeholder="post code/zip" required>
                                         </div>
                                     </div>
 
@@ -116,7 +106,6 @@
                                                 (optional):</label>
                                             <textarea style="color:black" rows="3" name="description"
                                                 class="form-control bg-white " id="exampleInputEmail1" cols="5"></textarea>
-
                                         </div>
                                     </div>
 
@@ -163,7 +152,6 @@
                                         <input type="hidden" name="subtotal" value="{{ $subtotal }}">
                                         <input type="hidden" name="total"
                                             value="{{ $subtotal - session()->get('discount')['discount_amount'] }}">
-
                                     @else
                                         <div class="d-flex justify-content-between my-2">
                                             <h6><strong> Total</strong></h6>
@@ -178,32 +166,31 @@
                                     <div class="checkout__input__checkbox">
                                         <label for="payment">
                                             <p><small> HansCash</small>
-                                                <input type="checkbox" id="payment" value="HandCash" name="payment_type"
+                                                <input type="radio" value="HandCash" name="payment_type"
+                                                    style="color: black" required>
+                                            </p>
+{{--
+                                            <p><small> OnlineCash</small>
+                                                <input type="radio" value="OnlinePayment" name="payment_type"
                                                     style="color: black">
                                                 <span class="checkmark  @error('payment_type') is-invalid @enderror"></span>
                                             </p>
-
+--}}
                                             @error('payment_type')
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </label>
                                     </div>
-
-                                    <div class="checkout__input__checkbox">
-                                        <label for="payment">
-                                            <p><small> OnlineCash</small>
-                                                <input type="checkbox" id="online_cash" value="OnlineCash"
-                                                    name="payment_type" style="color: black">
-                                                <span class="checkmark  @error('payment_type') is-invalid @enderror"></span>
-                                            </p>
-
-                                            @error('payment_type')
-                                                <span class="text-danger">{{ $message }}</span>
-                                            @enderror
-                                        </label>
+                                    
+                                    <button type="submit" style="border-radius: 4px" class=" button-style">PLACE ORDER
+                                        (Hand Cash)</button>
+                                    <div class="mx-auto">
+                                        <small>OR</small>
                                     </div>
+                                    <a href="{{ url('example2') }}" type="submit"
+                                        class="btn button-style text-white">Online Payment</a>
 
-                                    <button type="submit" class=" button-style">PLACE ORDER</button>
+
 
                                 </div>
 

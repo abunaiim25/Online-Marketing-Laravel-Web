@@ -5,6 +5,9 @@
     Online Marketing - My Orders
 @endsection
 
+@php
+    $front = App\Models\FrontControl::first();
+@endphp
 
 @section('frontend_content')
     <section id="blog-home " class="mt-5 pt-5 container">
@@ -111,11 +114,11 @@
 
     <!--banner-->
     <section id="banner" class="my-5 pt-5 container p-5"
-        style=" background-image: url({{ asset('frontend') }}/image/shopping2.jpg); border-radius: 15px;">
+        style=" background-image: url({{ asset('img_DB/front/myorder_banner/' . $front->myorder_banner_img) }}); border-radius: 15px;">
         <div class="container">
-            <h4>MID SEASON'S SALE</h4>
-            <h1>Autumn Collection<br>UP TO 20% OFF</h1>
-            <a class="btn text-uppercase  button-style" href="{{ url('shop') }}" role="button">Shop Now</a>
+            <h4 class="w-50">{{$front->myorder_banner_txt1}}</h4>
+            <h1 class="w-50">{{$front->myorder_banner_txt2}}</h1>
+            <a  class="btn text-uppercase  button-style" href="{{ url('shop') }}" role="button">Shop Now</a>
         </div>
     </section>
 

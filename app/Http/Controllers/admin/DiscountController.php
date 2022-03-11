@@ -64,4 +64,14 @@ class DiscountController extends Controller
         return Redirect()->back()->with('status','Discount Activated');
     }
 
+
+       //searching discount
+       public function discount_search(Request $request)
+       {
+           $discount = Discount::
+           where('discount_name','like','%'.$request->search.'%')
+           ->orWhere('discount_persent','like','%'.$request->search.'%')
+           ->paginate(10);
+           return view('admin.discount.index',compact('discount'));
+       }
 }

@@ -70,4 +70,13 @@ class CategoryController extends Controller
         Category::find($id)->update(['status' => 1]);
         return Redirect()->back()->with('Catupdated','Category Activated');
     }
+
+     //searching catagory
+     public function category_search(Request $request)
+     {
+         $categories = Category::
+         where('category_name','like','%'.$request->search.'%')
+         ->paginate(10);
+         return view('admin.category.index',compact('categories'));
+     }
 }

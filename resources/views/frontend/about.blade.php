@@ -5,14 +5,16 @@
     Online Marketing - About Us
 @endsection
 
+@php
+    $front = App\Models\FrontControl::first();
+@endphp
+
 
 @section('frontend_content')
-    <style>
-    </style>
 
     <!--banner-->
     <section id="banner" class="mt-5"
-        style=" background-image: url({{ asset('frontend') }}/image/about3.jpg);  height: 60vh;">
+        style=" background-image: url({{ asset('img_DB/front/about_banner/' . $front->about_banner_img) }});  height: 60vh;">
     </section>
 
     <section id="cart-home " class="mt-5  container">

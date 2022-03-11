@@ -6,17 +6,22 @@
 @endsection
 
 
+@php
+    $front = App\Models\FrontControl::first();
+@endphp
+
+
 @section('frontend_content')
     <!--banner-->
     <section id="banner" class="mt-5"
-        style=" background-image: url({{ asset('frontend') }}/image/about3.jpg);  height: 60vh !important;">
+        style=" background-image: url({{ asset('img_DB/front/contact_banner/' . $front->contact_banner_img) }});  height: 60vh !important;">
     </section>
 
     <section id="cart-home " class="mb-5 pt-5 container ">
         <h2 class="font-weight-bold text-center">Contact Us</h2>
     </section>
 
-    <section class="container mb-5 pb-5">
+    <section class=" mb-5 pb-5">
         <div class="w-50 mx-auto">
             <form class="main-form" action="{{ url('contact_submit') }}" method="POST">
                 @csrf

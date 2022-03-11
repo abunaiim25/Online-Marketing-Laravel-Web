@@ -5,14 +5,17 @@
     Online Marketing - Home
 @endsection
 
+@php
+    $front = App\Models\FrontControl::first();
+@endphp
 
 @section('frontend_content')
     <!--Background Image-->
-    <section id="home" style=" background-image: url({{ asset('frontend') }}/image/bg2.jpg);">
+    <section id="home" style=" background-image: url({{ asset('img_DB/front/home/' . $front->home_bg_img) }});">
         <div class="container">
-            <h5>NEW ARRIVALES</h5>
-            <h1><b><span>Best Price</span> This Year</b></h1>
-            <p>Shoomatic offers your very comfortable time<br>on walking and exercises</p>
+            <h5 class="w-50">{{$front->home_bg_txt1}}</h5>
+            <h1 class="w-50"><b><span>{{$front->home_bg_txt2}}</span></b></h1>
+            <p class="w-50">{{$front->home_bg_txt3}}</p>
             <a class="btn text-uppercase  button-style" href="{{ url('shop') }}" role="button">Shop Now</a>
         </div>
     </section>
@@ -79,25 +82,22 @@
         <div class="row p-0 m-0 ">
 
             <div class="one col-lg-4 col-md-12 col-12 p-0">
-                <img class="img-fluid" src="{{ asset('frontend') }}/image/shoe.jpg" alt="">
+                <img class="img-fluid" src="{{ asset('img_DB/front/new/new1/' . $front->home_new_txt1_img) }}" alt="">
                 <div class="details">
-                    <h2>Extream Rate Sneakers</h2>
                     <a href="{{ url('shop') }}">Shopping Here</a>
                 </div>
             </div>
 
             <div class="one col-lg-4 col-md-12 col-12 p-0">
-                <img class="img-fluid" src="{{ asset('frontend') }}/image/watch.jpg" alt="">
+                <img class="img-fluid" src="{{ asset('img_DB/front/new/new2/' . $front->home_new_txt2_img) }}" alt="">
                 <div class="details">
-                    <h2>Extream Rate Sneakers</h2>
                     <a href="{{ url('news') }}">News Here</a>
                 </div>
             </div>
 
             <div class="one col-lg-4 col-md-12 col-12 p-0">
-                <img class="img-fluid" src="{{ asset('frontend') }}/image/shoe.jpg" alt="">
+                <img class="img-fluid" src="{{ asset('img_DB/front/new/new3/' . $front->home_new_txt3_img) }}" alt="">
                 <div class="details">
-                    <h2>Extream Rate Sneakers</h2>
                     <a href="{{ url('contact') }}">Contact Here</a>
                 </div>
             </div>
@@ -111,7 +111,7 @@
     <div class="mt-5">
 
         <div class="container text-center mt-5 py-5">
-            <h3><strong>Our Latest Product</strong></h3>
+            <h3><strong>Our Product</strong></h3>
             <hr class="mx-auto">
             <p>Here you can check out our new product with fair price on Online-Marketing</p>
         </div>
@@ -146,10 +146,10 @@
 
     <!--banner-->
     <section id="banner" class="mt-5 pt-5"
-        style=" background-image: url({{ asset('frontend') }}/image/shopping2.jpg);">
+        style=" background-image: url({{ asset('img_DB/front/home_banner/' . $front->home_banner_img) }});">
         <div class="container">
-            <h4>MID SEASON'S SALE</h4>
-            <h1>Autumn Collection<br>UP TO 20% OFF</h1>
+            <h4 class="w-50">{{$front->home_banner_txt1}}</h4>
+            <h1 class="w-50">{{$front->home_banner_txt2}}</h1>
             <a class="btn text-uppercase  button-style" href="{{ url('shop') }}" role="button">Shop Now</a>
         </div>
     </section>

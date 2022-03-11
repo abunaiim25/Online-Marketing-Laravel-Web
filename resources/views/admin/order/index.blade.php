@@ -4,6 +4,19 @@
     Admin - Dashboard
 @endsection
 
+@section('search')
+ {{--sesrch--}}
+ <ul class="navbar-nav w-100">
+    <li class="nav-item w-100">
+
+      <form  action="{{url('orders_search')}}" method="GET" class="nav-link mt-2 mt-md-0  d-lg-flex search">
+        {{csrf_field()}}
+        <input type="text" name="search"  class="form-control bg-white" placeholder="search orders">
+      </form>
+      
+    </li>
+  </ul>
+@endsection
 
 
 @section('admin_content')
@@ -65,9 +78,17 @@
                                 <a href="{{ 'order_status_history' }}" class="btn btn-success">Order History</a>
                             </div>
                         </div>
-                      
 
                         <div class="table-wrapper" style="overflow: auto">
+
+                            <ul class="nav nav-pills">
+                                <li class="nav-item">
+                                    <a class="nav-link active" aria-current="page" href="{{ url('/home') }}">Hand Cash</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link " href="{{ url('admin_payment_online') }}">Payment Online</a>
+                                </li>
+                            </ul>
 
                             @if ($orders->count() > 0)
                                 <div class="product">
@@ -79,10 +100,9 @@
                                                 <th>Odrer Time</th>
                                                 <th>Odrer Date</th>
                                                 <th>Email</th>
-                                                <th>Phone</th>
                                                 <th>Invoice No</th>
                                                 <th>Payment Type</th>
-                                                <th>Total</th>
+                                                <th>Total TK</th>
                                                 <th>Discount</th>
                                                 <th>Status</th>
                                                 <th>Action</th>
@@ -101,10 +121,9 @@
                                                     <td>{{ $row->created_at->diffForHumans() }}</td>
                                                     <td>{{ date('d-m-Y', strtotime($row->created_at)) }}</td>
                                                     <td>{{$row->user->email}}</td>
-                                                    <td>{{$row->user->phone}}</td>
-                                                    <td>#{{ $row->invoice_no }}</td>
+                                                    <td>{{ $row->invoice_no }}</td>
                                                     <td>{{ $row->payment_type }}</td>
-                                                    <td>{{ $row->total }} TK</td>
+                                                    <td>{{ $row->total }}</td>
                                                     <td>
                                                         @if ($row->discount_percentage == null)
                                                             <span class="badge badge-danger">No</span>

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Shipping;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class OrderadminController extends Controller
@@ -28,7 +29,7 @@ class OrderadminController extends Controller
 
     public function order_status_history()
     {
-        $orders = Order::where('status',1)->paginate(10);
+    $orders = Order::where('status',1)->paginate(10);
      return view('admin.order.history_order',compact("orders"));
     }
 
@@ -37,4 +38,32 @@ class OrderadminController extends Controller
            return Redirect()->back()->with('delete','Order Deleted');
        }
     
+
+          //searching orders_search
+    public function orders_search(Request $request)
+    {
+        $orders = Order::
+        join('users',  'orders.user_id','users.id')->select('orders.*','users.email')
+        ->where('invoice_no','like','%'.$request->search.'%')
+        ->orWhere('email','like','%'.$request->search.'%')
+        ->orWhere('payment_type','like','%'.$request->search.'%')
+        ->orWhere('total','like','%'.$request->search.'%')
+        ->orWhere('subtotal','like','%'.$request->search.'%')
+        ->paginate(10);
+
+        return view('admin.order.index',compact('orders'));
+    }
+
+    public function orders_history_search(Request $request)
+    {
+        $orders = Order::
+        join('users',  'orders.user_id','users.id')->select('orders.*','users.email')
+        ->where('invoice_no','like','%'.$request->search.'%')
+        ->orWhere('email','like','%'.$request->search.'%')
+        ->orWhere('payment_type','like','%'.$request->search.'%')
+        ->orWhere('total','like','%'.$request->search.'%')
+        ->orWhere('subtotal','like','%'.$request->search.'%')
+        ->paginate(10);
+        return view('admin.order.history_order',compact("orders"));
+    }
 }

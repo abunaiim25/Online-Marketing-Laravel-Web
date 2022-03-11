@@ -34,7 +34,7 @@ search.onclick = function()
 
 clear.onclick = function()
 {
-    document.getElementById("search_input").value = "";
+    document.getElementById("query").value = "";
 }
 
 

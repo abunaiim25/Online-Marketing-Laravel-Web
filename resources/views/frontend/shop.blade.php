@@ -5,6 +5,10 @@
     Online Marketing - Shop
 @endsection
 
+@php
+    $front = App\Models\FrontControl::first();
+    $categories = App\Models\Category::where('status', 1)->get();
+@endphp
 
 @section('frontend_content')
     <section class=" container featured my-5 pb-5 pt-3">
@@ -13,6 +17,8 @@
 
 
             <div class="col-lg-3 col-md-4 col-12 mt-5 ">
+
+
                 <div class="hero__categories">
                     <div class="hero__categories__all">
                         <i class="fa fa-bars"></i>
@@ -20,7 +26,7 @@
                     </div>
 
                     @php
-                         $categories = App\Models\Category::where('status', 1)->get();
+                         $categories = App\Models\Category::where('status', 1)->get(); 
                     @endphp
                     <div class="overflow">
                         <ul>
@@ -36,11 +42,11 @@
 
             <div class="col-lg-9 col-md-8 col-12">
                 <!--banner-->
-                <section id="banner" class="mt-5 pt-5 img-fluid"
-                    style=" background-image: url({{ asset('frontend') }}/image/bg.jpg);">
+                <section id="banner" class="mt-5 pt-5 img-fluid" 
+                    style=" background-image: url({{ asset('img_DB/front/shop_banner/' . $front->shop_banner_img) }}); height:60vh!important;">
                     <div class="container">
-                        <h4>MID SEASON'S SALE</h4>
-                        <h1>Autumn Collection<br>UP TO 20% OFF</h1>
+                        <h4 class="w-50">{{$front->shop_banner_txt1}}</h4>
+                        <h1 class="w-50">{{$front->shop_banner_txt2}}</h1>
 
                     </div>
                 </section>

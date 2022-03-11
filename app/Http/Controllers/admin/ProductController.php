@@ -219,4 +219,16 @@ class ProductController extends Controller
         Product::findOrFail($id)->update(['status' => 1]);
         return Redirect()->back()->with('status','Product Activated');
     }
+
+     //searching product
+     public function product_search(Request $request)
+     {
+         $products = Product::
+         where('product_name','like','%'.$request->search.'%')
+         ->orWhere('product_quantity','like','%'.$request->search.'%')
+         ->orWhere('description','like','%'.$request->search.'%')
+         ->orWhere('price','like','%'.$request->search.'%')
+         ->paginate(10);
+         return view('admin.product.manage',compact('products'));
+     }
 }

@@ -1,8 +1,13 @@
 <!--Navigation-->
+
+@php
+$front = App\Models\FrontControl::first();
+@endphp
+
 <nav class="navbar navbar-expand-lg navbar-light bg-light py-2 fixed-top">
-    <div class="container">
+    <div class="container-fluid">
         <a class="navbar-brand" href="{{ url('/') }}">
-            <img src="{{ asset('frontend') }}/image/logo.png" alt="">
+            <img style="height: 40px;" src="{{ asset('img_DB/front/logo/' . $front->logo_big) }}" alt="">
         </a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -26,9 +31,6 @@
                     <a class="nav-link " aria-current="page" href="{{ url('news') }}">News</a>
                 </li>
 
-                <li class="nav-item {{ Request::is('about') ? 'active' : '' }}">
-                    <a class="nav-link " aria-current="page" href="{{ url('about') }}">About</a>
-                </li>
 
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
@@ -39,18 +41,27 @@
                         <li class="nav-item  {{ Request::is('contact') ? 'active' : '' }}">
                             <a class="nav-link " aria-current="page" href="{{ url('contact') }}">Contact Us</a>
                         </li>
-        
+
                         <li class="nav-item   {{ Request::is('my_orders') ? 'active' : '' }}">
                             <a class="nav-link " aria-current="page" href="{{ url('my_orders') }}">My Orders</a>
                         </li>
+
+                        <li class="nav-item {{ Request::is('about') ? 'active' : '' }}">
+                            <a class="nav-link " aria-current="page" href="{{ url('about') }}">About</a>
+                        </li>
+
                     </ul>
                 </li>
 
-                {{--count--}}
-            @php
-                $quantity = App\Models\Cart::where('user_id', Auth::id())->where('user_ip', request()->ip())->sum('qty');
-                $wishqty = App\Models\Wishlist::where('user_id', Auth::id())->where('user_id', Auth::id())->get();
-             @endphp
+                {{-- count --}}
+                @php
+                    $quantity = App\Models\Cart::where('user_id', Auth::id())
+                        ->where('user_ip', request()->ip())
+                        ->sum('qty');
+                    $wishqty = App\Models\Wishlist::where('user_id', Auth::id())
+                        ->where('user_id', Auth::id())
+                        ->get();
+                @endphp
 
                 <li class="nav-item   {{ Request::is('cart') ? 'active' : '' }}">
                     <a href="{{ url('cart') }}" class="nav-link " aria-current="page"><i
@@ -58,20 +69,25 @@
                 </li>
 
                 <li class="nav-item   {{ Request::is('wishlist') ? 'active' : '' }}">
-                    <a href="{{ url('wishlist') }}" class="nav-link " aria-current="page"><i class="fas fa-heart"><small>{{ count($wishqty) }}</small></i></a>
+                    <a href="{{ url('wishlist') }}" class="nav-link " aria-current="page"><i
+                            class="fas fa-heart"><small>{{ count($wishqty) }}</small></i></a>
                 </li>
 
 
                 <li class="nav-item">
-                    <div class="sesrch-box">
-                        <div class="icon">
-                            <i class="search fal fa-search"></i>
+                    <form action="{{ url('search_product_item') }}" method="GET" class="search-form">
+                        {{ csrf_field() }}
+
+                        <div class="sesrch-box">
+                            <div class="icon">
+                                <i class="search fal fa-search"></i>
+                            </div>
+                            <div class="input">
+                                <input type="text" name="query" id="query" class="form-control" placeholder="search products..." >
+                                <i class="clear fa fa-times"></i>
+                            </div>
                         </div>
-                        <div class="input">
-                            <input type="text" placeholder="search..." id="search_input">
-                            <i class="clear fa fa-times"></i>
-                        </div>
-                    </div>
+                    </form>
                 </li>
             </ul>
 
