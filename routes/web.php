@@ -113,6 +113,10 @@ Route::PUT('update_payment_status/{id}',[PaymentController::class,'update_paymen
 Route::get('order_payment_history',[PaymentController::class,'order_payment_history']);
 Route::get('orders_search',[PaymentController::class,'orders_search']); 
 Route::get('orders_history_search',[PaymentController::class,'orders_history_search']); 
+//payment_email_send
+Route::get('payment_email_view/{id}',[EmailController::class,'payment_email_view']);
+Route::post('payment_send_email/{id}',[EmailController::class,'payment_send_email']);
+
 
 //==================send mail===================
 Route::get('/email_view/{id}',[EmailController::class,'email_view']);
@@ -131,7 +135,6 @@ Route::get('admins_search',[UserController::class,'admins_search']);
 Route::get('admin_contact',[ContactadminController::class,'admin_contact']);
 Route::get('contact_seen_admin/{id}',[ContactadminController::class,'contact_seen_admin']);
 Route::get('message_seen/{id}',[ContactadminController::class,'message_seen']);
-Route::get('email_view/{id}',[ContactadminController::class,'email_view']);
 Route::get('contact_search',[ContactadminController::class,'contact_search']);
 //contact_email_send
 Route::get('contact_email_view/{id}',[EmailController::class,'contact_email_view']);

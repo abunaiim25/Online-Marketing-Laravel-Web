@@ -29,12 +29,14 @@ class OrderadminController extends Controller
 
     public function order_status_history()
     {
-    $orders = Order::where('status',1)->paginate(10);
+    $orders = Order::where('status',1)->latest()->paginate(10);
      return view('admin.order.history_order',compact("orders"));
     }
 
     public function admin_orders_delete($id){
         Order::findOrFail($id)->delete();
+        OrderItem::where('order_id',$id)->delete();
+        $shipping = Shipping::where('order_id',$id)->delete();
            return Redirect()->back()->with('delete','Order Deleted');
        }
     

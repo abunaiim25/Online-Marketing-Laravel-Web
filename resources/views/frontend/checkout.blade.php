@@ -38,6 +38,8 @@
                             <div class="card p-3" style="background: blanchedalmond">
                                 <div class="row">
 
+                                    <input type="hidden" name="User_id" value="{{ Auth::user()->id }}">
+
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <label class="form-control-label">Name: <span

@@ -12,7 +12,7 @@ class Order extends Model
 
     protected $guarded = [];
 
-    use Notifiable;//change for Email
+    
 
     public function user(){
         return $this->belongsTo(User::class,'user_id');

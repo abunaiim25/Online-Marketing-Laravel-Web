@@ -11,6 +11,10 @@ class Shipping extends Model
     use HasFactory;
 
     protected $guarded = [];
+ 
+    use Notifiable;//change for Email
 
-    use Notifiable;//change
+    public function user(){
+        return $this->belongsTo(User::class,'user_id');
+    }
 }

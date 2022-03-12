@@ -51,6 +51,7 @@ class OrderController extends Controller
 
         Shipping::insert([
             'order_id' => $order_id,
+            'user_id' => $request->User_id,
             'shipping_name' => $request->shipping_name,
             'shipping_email' => $request->shipping_email,
             'shipping_phone' => $request->shipping_phone,

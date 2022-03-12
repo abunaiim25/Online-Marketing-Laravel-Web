@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use App\Models\Contact;
 use App\Models\Order;
+use App\Models\Payment;
 use App\Models\Shipping;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -18,9 +19,8 @@ class EmailController extends Controller
     //========================Order=================================
     public function email_view($id)
     {
-        $data = User::find($id);
-        $order = Order::find($id);
-        return view('admin.email_view', compact('data', 'order'));
+        $shipping = Shipping::find($id);
+        return view('admin.email_view', compact('shipping'));
     }
 
     //send_email
@@ -61,4 +61,30 @@ class EmailController extends Controller
         Notification::send($data, new SendEmailNotification($details));
         return redirect('admin_contact')->with('success', 'Email Send Successfully');
     }
+
+
+    
+        //====================Payment==========================
+
+        public function payment_email_view($id)
+        {
+            $shpping_payment = Payment::find($id);
+            return view('admin.order.payment_order.email_view_payment', compact('shpping_payment'));
+        }
+    
+        //send_email
+        public function payment_send_email(Request $request, $id)
+        {
+            $data = User::find($id);
+    
+            $details = [
+                'greeting' => $request->greeting,
+                'body' => $request->body,
+                'endpart' => $request->endpart
+            ];
+    
+            Notification::send($data, new SendEmailNotification($details));
+            return redirect('admin_payment_online')->with('success', 'Email Send Successfully');
+        }
+        
 }

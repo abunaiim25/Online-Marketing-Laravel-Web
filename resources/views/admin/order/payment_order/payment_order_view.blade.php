@@ -38,7 +38,7 @@
                         <div class="mb-3" style="display: flex; justify-content: space-between;">
                             <div>
                                 <h6 class="card-body-title" style="float:left"><strong>Send Mail</strong>
-                                <span> <a class="btn btn-success btn-sm" href="{{ url('email_view', $shipping_payment->id) }}"><i
+                                <span> <a class="btn btn-success btn-sm" href="{{ url('payment_email_view', $shipping_payment->id) }}"><i
                                     class="fas fa-share"></i></a></span></h6>
                             </div>
 

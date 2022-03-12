@@ -16,13 +16,12 @@
 
 <body style="background: #1e273b">
 
+    
     <div class="container">
         <div class="sl-mainpanel m-4">
             <nav class="breadcrumb sl-breadcrumb">
-                {{--
-                <a class="breadcrumb-item  text-white" style="text-decoration: none" href="{{url('admin_orders_view/'.$order->id)}}">Order View</a>
+                <a class="breadcrumb-item  text-white" style="text-decoration: none" href="{{url('admin_orders_view/'.$shpping_payment->id)}}">Order View</a>
                 <span class="breadcrumb-item active text-white">Send Mail</span>
-                --}}
             </nav>
 
             <div class="sl-pagebody">
@@ -43,7 +42,7 @@
                     @endif
 
 
-                        <form action="{{ url('send_email/'. $shipping->user->id) }}" method="POST">
+                        <form action="{{ url('payment_send_email/'. $shpping_payment->user->id) }}" method="POST">
                             @csrf    
 
                             <div class="row">
@@ -87,6 +86,7 @@
 
         </div>
     </div>
+    
 
 
     <!-- Bootstrap script -->
