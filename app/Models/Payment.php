@@ -12,6 +12,10 @@ class Payment extends Model
 
     use Notifiable;//change for Email
 
+    protected $fillable = [
+        'amount',
+    ];
+
     public function user(){
         return $this->belongsTo(User::class,'user_id');
     }

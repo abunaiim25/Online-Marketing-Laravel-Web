@@ -6,16 +6,16 @@
 @endsection
 
 @php
-    $front = App\Models\FrontControl::first();
+$front = App\Models\FrontControl::first();
 @endphp
 
 @section('frontend_content')
     <!--Background Image-->
     <section id="home" style=" background-image: url({{ asset('img_DB/front/home/' . $front->home_bg_img) }});">
         <div class="container">
-            <h5 class="w-50">{{$front->home_bg_txt1}}</h5>
-            <h1 class="w-50"><b><span>{{$front->home_bg_txt2}}</span></b></h1>
-            <p class="w-50">{{$front->home_bg_txt3}}</p>
+            <h5 class="w-50">{{ $front->home_bg_txt1 }}</h5>
+            <h1 class="w-50"><b><span>{{ $front->home_bg_txt2 }}</span></b></h1>
+            <p class="w-50">{{ $front->home_bg_txt3 }}</p>
             <a class="btn text-uppercase  button-style" href="{{ url('shop') }}" role="button">Shop Now</a>
         </div>
     </section>
@@ -23,15 +23,15 @@
 
     <!--Brand-->
     <!--    <section id="brand" class="container">
-             <div class="row m-0 py-5">
-           <img  class="img-fluid col-lg-2 col-md-4 col-6" src="{{ asset('frontend') }}/image/nike.png" alt="">
-            <img  class="img-fluid col-lg-2 col-md-4 col-6 " src="{{ asset('frontend') }}/image/nike.png" alt="">
-             <img  class="img-fluid col-lg-2 col-md-4 col-6 " src="{{ asset('frontend') }}/image/nike.png" alt="">
-           <img  class="img-fluid col-lg-2 col-md-4 col-6 " src="{{ asset('frontend') }}/image/nike.png" alt="">
-             <img  class="img-fluid col-lg-2 col-md-4 col-6 " src="{{ asset('frontend') }}/image/nike.png" alt="">
-              </div>
-               </section>
-             -->
+                     <div class="row m-0 py-5">
+                   <img  class="img-fluid col-lg-2 col-md-4 col-6" src="{{ asset('frontend') }}/image/nike.png" alt="">
+                    <img  class="img-fluid col-lg-2 col-md-4 col-6 " src="{{ asset('frontend') }}/image/nike.png" alt="">
+                     <img  class="img-fluid col-lg-2 col-md-4 col-6 " src="{{ asset('frontend') }}/image/nike.png" alt="">
+                   <img  class="img-fluid col-lg-2 col-md-4 col-6 " src="{{ asset('frontend') }}/image/nike.png" alt="">
+                     <img  class="img-fluid col-lg-2 col-md-4 col-6 " src="{{ asset('frontend') }}/image/nike.png" alt="">
+                      </div>
+                       </section>
+                     -->
 
 
     <!--product-->
@@ -53,16 +53,10 @@
                             <a href="{{ url('product_details/' . $product->id) }}">
                                 <img class="img-fluid mb-3"
                                     src="{{ asset('img_DB/product/image_one/' . $product->image_one) }}" alt="">
-                                <div class="star">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                </div>
+
                                 <h3>{{ $product->product_name }}</h3>
                                 <h6 class="p-price">Price: {{ $product->price }} TK</h6>
-                                <button class="buy-btn button-style">Details</button>
+                                <button class="buy-btn button-style mt-2">Details</button>
                             </a>
                         </div>
                     </li>
@@ -82,21 +76,24 @@
         <div class="row p-0 m-0 ">
 
             <div class="one col-lg-4 col-md-12 col-12 p-0">
-                <img class="img-fluid" src="{{ asset('img_DB/front/new/new1/' . $front->home_new_txt1_img) }}" alt="">
+                <img class="img-fluid" src="{{ asset('img_DB/front/new/new1/' . $front->home_new_txt1_img) }}"
+                    alt="">
                 <div class="details">
                     <a href="{{ url('shop') }}">Shopping Here</a>
                 </div>
             </div>
 
             <div class="one col-lg-4 col-md-12 col-12 p-0">
-                <img class="img-fluid" src="{{ asset('img_DB/front/new/new2/' . $front->home_new_txt2_img) }}" alt="">
+                <img class="img-fluid" src="{{ asset('img_DB/front/new/new2/' . $front->home_new_txt2_img) }}"
+                    alt="">
                 <div class="details">
                     <a href="{{ url('news') }}">News Here</a>
                 </div>
             </div>
 
             <div class="one col-lg-4 col-md-12 col-12 p-0">
-                <img class="img-fluid" src="{{ asset('img_DB/front/new/new3/' . $front->home_new_txt3_img) }}" alt="">
+                <img class="img-fluid" src="{{ asset('img_DB/front/new/new3/' . $front->home_new_txt3_img) }}"
+                    alt="">
                 <div class="details">
                     <a href="{{ url('contact') }}">Contact Here</a>
                 </div>
@@ -123,16 +120,9 @@
                     <a href="{{ url('product_details/' . $product->id) }}">
                         <img class="img-fluid mb-3" src="{{ asset('img_DB/product/image_one/' . $product->image_one) }}"
                             alt="">
-                        <div class="star">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
                         <h3>{{ $product->product_name }}</h3>
                         <h6 class="p-price">Price: {{ $product->price }} TK</h6>
-                        <button class="buy-btn button-style">Details</button>
+                        <button class="buy-btn button-style mt-2">Details</button>
                     </a>
                 </div>
             @endforeach
@@ -148,8 +138,8 @@
     <section id="banner" class="mt-5 pt-5"
         style=" background-image: url({{ asset('img_DB/front/home_banner/' . $front->home_banner_img) }});">
         <div class="container">
-            <h4 class="w-50">{{$front->home_banner_txt1}}</h4>
-            <h1 class="w-50">{{$front->home_banner_txt2}}</h1>
+            <h4 class="w-50">{{ $front->home_banner_txt1 }}</h4>
+            <h1 class="w-50">{{ $front->home_banner_txt2 }}</h1>
             <a class="btn text-uppercase  button-style" href="{{ url('shop') }}" role="button">Shop Now</a>
         </div>
     </section>

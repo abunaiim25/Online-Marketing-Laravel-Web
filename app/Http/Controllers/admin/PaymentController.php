@@ -37,9 +37,39 @@ class PaymentController extends Controller
         return redirect('admin_payment_online')->with('status',"Order Status Updated Successfully");
     }
 
+
+    //=======================history================================
     public function order_payment_history()
     {
     $order_payment = OrderPayment::where('status',1)->paginate(10);
      return view('admin.order.payment_order.order_payment_history',compact("order_payment"));
     }
+
+              //searching orders_search
+              public function payment_orders_search(Request $request)
+              {
+                  $order_payment = OrderPayment::
+                  join('users',  'order_payments.user_id','users.id')->select('order_payments.*','users.email') //users table join on (orders.user_id) 
+                  ->where('invoice_no','like','%'.$request->search.'%')
+                  ->orWhere('email','like','%'.$request->search.'%')
+                  ->orWhere('payment_type','like','%'.$request->search.'%')
+                  ->orWhere('total','like','%'.$request->search.'%')
+                  ->orWhere('subtotal','like','%'.$request->search.'%')
+                  ->paginate(10);
+          
+                  return view('admin.order.payment_order.index',compact('order_payment'));
+              }
+          
+              public function payment_orders_history_search(Request $request)
+              {
+                  $order_payment = OrderPayment::
+                  join('users',  'order_payments.user_id','users.id')->select('order_payments.*','users.email') //users table join on (orders.user_id) = query join
+                  ->where('invoice_no','like','%'.$request->search.'%')
+                  ->orWhere('email','like','%'.$request->search.'%')
+                  ->orWhere('payment_type','like','%'.$request->search.'%')
+                  ->orWhere('total','like','%'.$request->search.'%')
+                  ->orWhere('subtotal','like','%'.$request->search.'%')
+                  ->paginate(10);
+                  return view('admin.order.payment_order.order_payment_history',compact("order_payment"));
+              }
 }

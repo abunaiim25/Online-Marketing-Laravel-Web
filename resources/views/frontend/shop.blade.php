@@ -68,16 +68,10 @@
                         <a href="{{ url('product_details/' . $product->id) }}">
                         <img class="img-fluid mb-3" src="{{ asset('img_DB/product/image_one/' . $product->image_one) }}"
                             alt="">
-                        <div class="star">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
+                      
                         <h3>{{ $product->product_name }}</h3>
                         <h6 class="p-price">Price: {{ $product->price }} TK</h6>
-                        <button class="buy-btn button-style">Details</button>
+                        <button class="buy-btn button-style mt-2">Details</button>
                     </a>
                     </div>
                 @endforeach

@@ -1,8 +1,13 @@
+@php
+$front = App\Models\FrontControl::first();
+@endphp
+
+ 
  <!-- partial:partials/_sidebar.html -->
  <nav class="sidebar sidebar-offcanvas" id="sidebar">
   <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
-    <a class="sidebar-brand brand-logo" href="#"><img src="{{ asset('frontend') }}/image/logo.png" alt="logo" /></a>
-    <a class="sidebar-brand brand-logo-mini" href="#"><img src="{{ asset('frontend') }}/image/logo.png" alt="logo" /></a>
+    <a class="sidebar-brand brand-logo" href="#"><img src="{{ asset('img_DB/front/logo/' . $front->logo_big) }}" alt="logo" /></a>
+    <a class="sidebar-brand brand-logo-mini" href="#"><img src="{{ asset('img_DB/front/logo/' . $front->logo_small) }}" alt="logo" /></a>
   </div>
   <ul class="nav">
     

@@ -95,10 +95,10 @@
 
                                     <div class="col-lg-6">
                                         <div class="form-group">
-                                            <label class="form-control-label">Post Code/ZIP: <span
+                                            <label class="form-control-label">Zip Code: <span
                                                     class="text-danger">*</span></label>
                                             <input class="form-control bg-white " style="color: black" type="text"
-                                                name="post_code" placeholder="post code/zip" required>
+                                                name="post_code" placeholder="zip code (integer type)" required>
                                         </div>
                                     </div>
 

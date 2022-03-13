@@ -7,6 +7,63 @@
 
 
 @section('frontend_content')
+
+    <!-- (2)Rate Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form action="{{ url('/add-rating') }}" method="POST">
+                    @csrf
+                    <input type="hidden" name="product_id" value="{{ $products->id }}">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Rate {{ $products->name }}</h5>
+                        <button style="color: white; background-color: green!important; " type="button"
+                            class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                            X</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="rating-css">
+                            <div class="star-icon">
+                                @if ($user_rating)
+                                    @for ($i = 1; $i <= $user_rating->stars_rated; $i++)
+                                        <input type="radio" value="{{ $i }}" name="product_rating" checked
+                                            id="rating{{ $i }}">
+                                        <label for="rating{{ $i }}" class="fa fa-star"></label>
+                                    @endfor
+                                    @for ($j = $user_rating->stars_rated + 1; $j <= 5; $j++)
+                                        <input type="radio" value="{{ $j }}" name="product_rating"
+                                            id="rating{{ $j }}">
+                                        <label for="rating{{ $j }}" class="fa fa-star"></label>
+                                    @endfor
+                                @else
+                                    <input type="radio" value="1" name="product_rating" checked id="rating1">
+                                    <label for="rating1" class="fa fa-star"></label>
+                                    <input type="radio" value="2" name="product_rating" id="rating2">
+                                    <label for="rating2" class="fa fa-star"></label>
+                                    <input type="radio" value="3" name="product_rating" id="rating3">
+                                    <label for="rating3" class="fa fa-star"></label>
+                                    <input type="radio" value="4" name="product_rating" id="rating4">
+                                    <label for="rating4" class="fa fa-star"></label>
+                                    <input type="radio" value="5" name="product_rating" id="rating5">
+                                    <label for="rating5" class="fa fa-star"></label>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button style="background-color: green!important; border: none;" type="button"
+                            class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button style="background-color:green!important; border: none;" type="submit"
+                            class="btn btn-primary">Submit</button>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+
     <!--product details-->
     <section class="container product_deatils my-5 py-5">
 
@@ -34,13 +91,52 @@
                             class="small-img " alt="" onclick="myFunctionimg(this)">
                     </div>
                 </div>
+
+                <div class="row mt-3 ">
+                    <div class="col-md-12">
+                        <!-- (1) Rate Button trigger modal (ShopController 4)-->
+                        <button style="background-color: white!important; color:black!important" type="button"
+                            class="btn btn-outline-dark mb-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            <i class="fa fa-star checked"></i> Rate this product
+                        </button>
+
+                        <a href="{{ url('add-review/' . $products->id) }}" type="button"
+                            class="btn btn-outline-warning mb-2">
+                             Write a review
+                        </a>
+                    </div>
+
+                </div>
+
+
             </div>
+
+
 
             <div class="col-lg-6 col-md-12 col-12">
                 <h6><a style="text-decoration: none;color:black;" href="{{ url('shop') }}">Shop</a> /
                     {{ $products->category->category_name }}</h6>
                 <h2 class="mt-4">{{ $products->product_name }}</h2>
                 <h4 class="my-2"> <b>Price: </b>{{ $products->price }} TK</h4>
+
+
+                <!-- (3) ratings-->
+                @php $ratenum = number_format($rating_value)  @endphp
+                <div class="rating">
+                    @for ($i = 1; $i <= $ratenum; $i++)
+                        <i class="fa fa-star checked"></i>
+                    @endfor
+                    @for ($j = $ratenum + 1; $j <= 5; $j++)
+                        <i class="fa fa-star"></i>
+                    @endfor
+                    <span>
+                        @if ($ratings->count() > 0)
+                            {{ $ratings->count() }} Ratings
+                        @else
+                            No Ratings
+                        @endif
+                    </span>
+                </div>
 
 
                 {{-- stock or outOfStock --}}{{-- cart,CheckoutController,shop,OrderController --}}
@@ -65,7 +161,8 @@
 
                     {{-- stock or outOfStock --}}
                     @if ($products->product_quantity > 0)
-                        <button type="submit" class="buy-btn button-style" style="width: 250px; height:45px; border-radius:4px">Buy Now <i
+                        <button type="submit" class="buy-btn button-style"
+                            style="width: 250px; height:45px; border-radius:4px">Buy Now <i
                                 class="fas fa-shopping-cart"></i></button>
                     @endif
                 </form>
@@ -87,6 +184,47 @@
 
         </div>
 
+    </section>
+
+
+    <section>
+        <div class="container">
+            <div class="card p-3">
+
+                <div class="mb-3" style="display: flex; justify-content: space-between;">
+                    <div>
+                        <h2 class="mb-1 mx-2">Reviews</h2>
+                    </div>
+                    <div class="" style="float:right">
+                        <a class="btn btn-warning btn-sm m-2" href="{{ url('add-review/' . $products->id) }}" role="button"> Write a review</a>
+                    </div>
+                </div>
+
+                @foreach ($reviews as $item)
+                    <div class="card p-3">
+                        <div class="user-review">
+
+                            <h3>{{ $item->user->name }}</h3>
+
+                            @if ($item->user_id == Auth::id())
+                                <a href="{{ url('edit-review/' . $products->slug . '/userreview') }}"
+                                    class="float-end bg-success badge text-white">Edit </a>
+                            @endif
+
+                            <small>{{ $item->created_at->diffForHumans() }}</small>
+                            <p class="mt-2">
+                                {{ $item->user_review }}
+                            </p>
+                        </div>
+                    </div>
+                @endforeach
+
+                @if ($reviews->count() >= 3)
+                    <a class="btn btn-success btn-sm m-2" href="#" role="button">Reviews See More</a>
+                @endif
+
+            </div>
+        </div>
     </section>
 
 

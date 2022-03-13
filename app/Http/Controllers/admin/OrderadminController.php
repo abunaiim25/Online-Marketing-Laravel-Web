@@ -45,6 +45,7 @@ class OrderadminController extends Controller
     public function orders_search(Request $request)
     {
         $orders = Order::
+        //users table join on (orders.user_id) table = query join
         join('users',  'orders.user_id','users.id')->select('orders.*','users.email')
         ->where('invoice_no','like','%'.$request->search.'%')
         ->orWhere('email','like','%'.$request->search.'%')
@@ -59,6 +60,7 @@ class OrderadminController extends Controller
     public function orders_history_search(Request $request)
     {
         $orders = Order::
+        //users table join on (orders.user_id) table = query join
         join('users',  'orders.user_id','users.id')->select('orders.*','users.email')
         ->where('invoice_no','like','%'.$request->search.'%')
         ->orWhere('email','like','%'.$request->search.'%')

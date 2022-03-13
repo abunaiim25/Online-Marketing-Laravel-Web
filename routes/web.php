@@ -22,8 +22,11 @@ use App\Http\Controllers\frontend\AboutController;
 use App\Http\Controllers\frontend\CartController;
 use App\Http\Controllers\frontend\CheckoutController;
 use App\Http\Controllers\frontend\ContactController;
+use App\Http\Controllers\frontend\MyOrderPayment;
 use App\Http\Controllers\frontend\NewsController;
 use App\Http\Controllers\frontend\OrderController;
+use App\Http\Controllers\frontend\RattingController;
+use App\Http\Controllers\frontend\ReviewController;
 use App\Http\Controllers\frontend\SearchController;
 use App\Http\Controllers\frontend\WishlistController;
 use App\Http\Controllers\SslCommerzPaymentController;
@@ -111,8 +114,8 @@ Route::get('admin_payment_orders_view/{id}',[PaymentController::class,'admin_pay
 Route::get('admin_payment_orders_delete/{id}',[PaymentController::class,'admin_payment_orders_delete']);
 Route::PUT('update_payment_status/{id}',[PaymentController::class,'update_payment_status']);
 Route::get('order_payment_history',[PaymentController::class,'order_payment_history']);
-Route::get('orders_search',[PaymentController::class,'orders_search']); 
-Route::get('orders_history_search',[PaymentController::class,'orders_history_search']); 
+Route::get('payment_orders_search',[PaymentController::class,'payment_orders_search']); 
+Route::get('payment_orders_history_search',[PaymentController::class,'payment_orders_history_search']); 
 //payment_email_send
 Route::get('payment_email_view/{id}',[EmailController::class,'payment_email_view']);
 Route::post('payment_send_email/{id}',[EmailController::class,'payment_send_email']);
@@ -228,19 +231,31 @@ Route::get('checkout',[CheckoutController::class,'index']);
 Route::post('place_order',[OrderController::class,'place_order']);
 Route::get('order_success',[OrderController::class,'order_success']);
 
-//============== My order ===================
+//============== My order===================
 Route::get('my_orders',[OrderController::class,'my_orders']);
 Route::get('my_orders_delete/{id}',[OrderController::class,'my_orders_delete']);
 Route::get('my_orders_view/{id}',[OrderController::class,'my_orders_view']);
 Route::get('my_shipping_edit/{id}',[OrderController::class,'my_shipping_edit']);
 Route::post('update_my_shipping/{id}',[OrderController::class,'update_my_shipping']);
 
+//=================my_order_payment_online===========================
+Route::get('my_order_payment',[MyOrderPayment::class,'my_order_payment']);
+Route::get('my_orders_delete_payment/{id}',[MyOrderPayment::class,'my_orders_delete_payment']);
+Route::get('my_orders_view_payment/{id}',[MyOrderPayment::class,'my_orders_view_payment']);
+Route::get('my_shipping_edit_payment/{id}',[MyOrderPayment::class,'my_shipping_edit_payment']);
+Route::post('update_my_shipping_payment/{id}',[MyOrderPayment::class,'update_my_shipping_payment']);
+
 //=======================Wishlist==========================
 Route::get('add_to_wishlist/{id}',[WishlistController::class,'add_to_wishlist']);
 Route::get('wishlist',[WishlistController::class,'wishlist']);     
 Route::get('wishlist_destroy/{id}',[WishlistController::class,'wishlist_destroy']);
 
+//=======================Rating==========================
+Route::post('add-rating',[RattingController::class,'addrating']);
 
+//=======================Review==========================
+Route::get('add-review/{id}',[ReviewController::class, 'reviewadd']);
+Route::post('add-review',[ReviewController::class, 'reviewcreate']);
 });
 
 

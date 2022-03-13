@@ -9,9 +9,9 @@
  <ul class="navbar-nav w-100">
     <li class="nav-item w-100">
 
-      <form  action="{{url('orders_search')}}" method="GET" class="nav-link mt-2 mt-md-0  d-lg-flex search">
+      <form  action="{{url('payment_orders_history_search')}}" method="GET" class="nav-link mt-2 mt-md-0  d-lg-flex search">
         {{csrf_field()}}
-        <input type="text" name="search"  class="form-control bg-white" placeholder="search orders">
+        <input type="text" name="search"  class="form-control bg-white" placeholder="search payment">
       </form>
       
     </li>
@@ -23,7 +23,7 @@
 
     <div class="sl-mainpanel m-4">
         <nav class="breadcrumb sl-breadcrumb">
-            <p>Admin Panel / Order </p>
+            <p>Admin Panel / Order History </p>
          
         </nav>
 
@@ -75,7 +75,7 @@
                                 <h6 class="card-body-title">Order List</h6>
                             </div>
                             <div>
-                                <a href="{{ 'order_payment_history' }}" class="btn btn-success">Order History</a>
+                                <a href="{{ 'admin_payment_online' }}" class="btn btn-success">Order </a>
                             </div>
                         </div>
 
@@ -102,7 +102,7 @@
                                                 <th>Email</th>
                                                 <th>Invoice No</th>
                                                 <th>Payment Type</th>
-                                                <th>Total TK</th>
+                                                <th>Total Payment</th>
                                                 <th>Discount</th>
                                                 <th>Status</th>
                                                 <th>Action</th>
@@ -123,7 +123,7 @@
                                                     <td>{{$row->user->email}}</td>
                                                     <td>{{ $row->invoice_no }}</td>
                                                     <td>Online Cash</td>
-                                                    <td>{{ $row->total }}</td>
+                                                    <td>{{ $row->total }} TK</td>
                                                     <td>
                                                         @if ($row->discount_percentage == null)
                                                             <span class="badge badge-danger">No</span>

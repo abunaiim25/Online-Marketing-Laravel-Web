@@ -8,7 +8,7 @@
 
 @section('frontend_content')
     <section id="blog-home " class="mt-5 pt-5 container">
-        <h2 class="font-weight-bold ">My Orders</h2>
+        <h2 class="font-weight-bold ">My Orders <small>(Hand Cash)</small></h2>
         <hr>
     </section>
 
@@ -97,7 +97,7 @@
                                         <div class="form-group">
                                             <label class="form-control-label">Sub Total:</label>
                                             <input class="form-control" type="text" name="email"
-                                                 value="{{ $order->subtotal }}" readonly>
+                                                 value="{{ $order->subtotal }} TK" readonly>
                                         </div>
                                     </div>
 
@@ -105,7 +105,7 @@
                                         <div class="form-group">
                                             <label class="form-control-label">Total:</label>
                                             <input class="form-control" type="text" name="email"
-                                                 value="{{ $order->total }}" readonly>
+                                                 value="{{ $order->total }} TK" readonly>
                                         </div>
                                     </div>
 
@@ -185,7 +185,7 @@
 
                                     <div class="col-12 my-1">
                                         <div class="form-group">
-                                            <label for="exampleInputEmail1">Description</label>
+                                            <label for="exampleInputEmail1">Description (Optional)</label>
                                             <textarea style="color:black" rows="4" name="description" class="form-control  "
                                                 readonly cols="5">{{ $shipping->description }}</textarea>
 

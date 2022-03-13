@@ -19,16 +19,6 @@ use Illuminate\Support\Facades\Session;
 class SslCommerzPaymentController extends Controller
 {
 
-    /*
-    //payment view
-    public function view($id)
-    {
-        $payment = Payment::where('id',$id)->where('user_id', Auth::id())->first();
-        return view('frontend.orders.viewOrderPayment', compact('payment'));
-    }
-*/
-
-
     public function exampleEasyCheckout()
     {
         return view('frontend.payment.exampleEasycheckout');
@@ -62,6 +52,8 @@ class SslCommerzPaymentController extends Controller
         $post_data['cus_country'] = "Bangladesh";
         $post_data['cus_phone'] = $request->phone;
         $post_data['cus_fax'] = "";
+        $post_data['description'] = $request->description;
+
 
         # SHIPMENT INFORMATION
         $post_data['ship_name'] = "Store Test";
@@ -112,6 +104,10 @@ class SslCommerzPaymentController extends Controller
             $prod->update();
         }
 
+
+        $request->validate([
+            'post_code' => 'integer',
+        ]);
         #Before  going to initiate the payment order status need to insert or update as Pending.
         $update_product = DB::table('payments')->where('transaction_id', $post_data['tran_id'])
             ->updateOrInsert([
@@ -127,16 +123,14 @@ class SslCommerzPaymentController extends Controller
                 'post_code' => $post_data['cus_postcode'],
                 'transaction_id' => $post_data['tran_id'],
                 'currency' => $post_data['currency'],
+                'description' => $post_data['description'],
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ]);
 
-       
-
         if (Session::has('discount')) {
             session()->forget('discount');
         }
-
         //delete from cart
         Cart::where('user_id', Auth::id())->where('user_ip', request()->ip())->delete();
 

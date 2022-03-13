@@ -70,7 +70,7 @@
                         <div class=" mb-3">
                             <label for="email">Email </label>
                             <input type="email" name="email" class="form-control" id="email"
-                                placeholder="you@example.com" value="{{ Auth::user()->email }}" required>
+                                placeholder="you@example.com" value="{{ Auth::user()->email }}" readonly>
                             <div class="invalid-feedback">
                                 Please enter a valid email address for shipping updates.
                             </div>
@@ -110,8 +110,8 @@
                             </div>
     
                             <div class="col-md-6 mb-3">
-                                <label for="post_code">Zip</label>
-                                <input type="text" class="form-control" id="zip" name="post_code" placeholder="zip"
+                                <label for="post_code">Zip Code</label>
+                                <input type="text" class="form-control" id="zip" name="post_code" placeholder="zip code (integer type)"
                                     required>
                                 <div class="invalid-feedback">
                                     Zip code required.
@@ -125,9 +125,18 @@
                             </div>
     
                         </div>
+
+                        <div class="mb-3">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Something write about shopping if any
+                                    (optional):</label>
+                                <textarea style="color:black" rows="3" name="description"
+                                    class="form-control bg-white " id="exampleInputEmail1" cols="5"></textarea>
+                            </div>
+                        </div>
                         
                         <hr class="mb-4">
-                        <button class="btn btn-dark btn-lg btn-block" type="submit">Continue to checkout
+                        <button class="btn btn-dark btn-lg btn-block " type="submit">CONTINUE TO CHECKOUT
                         </button>
                     </div>
                 </div>

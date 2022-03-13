@@ -20,6 +20,7 @@ class OrderController extends Controller
     {
         $request->validate([
             'payment_type' => 'required',
+            'post_code' => 'integer',
         ]);
 
         $order_id = Order::insertGetId([

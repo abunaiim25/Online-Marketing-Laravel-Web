@@ -1,68 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Admin -Payment Order View</title>
+@extends('layouts.frontend_layout')
 
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <!--font awesome cdn link-->
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
-        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+@section('title')
+    Online Marketing - My Orders
+@endsection
 
 
+@section('frontend_content')
+    <section id="blog-home " class="mt-5 pt-5 container">
+        <h2 class="font-weight-bold ">My Orders <small>(Online Cash)</small></h2>
+        <hr>
+    </section>
 
-</head>
 
-<body style="background: #1e273b">
-
-    <div class="container">
-        <div class="sl-mainpanel m-4">
-
-            <nav class="breadcrumb sl-breadcrumb">
-                <a class="breadcrumb-item  text-white" style="text-decoration: none"
-                    href="{{ url('/home') }}">Order</a>
-                <span class="breadcrumb-item active text-white">Payment Order View</span>
-            </nav>
+    <div class="container ">
+        <div class="m-4">
 
             <div class="sl-pagebody">
                 <div class="row row-sm">
 
-                    <div class="card p-4">
-
-                        <div class="mb-3" style="display: flex; justify-content: space-between;">
-                            <div>
-                                <h6 class="card-body-title" style="float:left"><strong>Send Mail</strong>
-                                <span> <a class="btn btn-success btn-sm" href="{{ url('payment_email_view', $shipping_payment->id) }}"><i
-                                    class="fas fa-share"></i></a></span></h6>
-                            </div>
-
-                            <div class="" style="float:right">
-                                <form action="{{ url('update_payment_status/' . $order_payment->id) }}" method="POST">
-                                    @csrf
-                                    @method('PUT')
-                                    <div style="display: flex; justify-content: space-between;">
-                                        <select class="form-select mx-2" name="order_status" style="width: 140px">
-                                            <option {{ $order_payment->status == '0' ? 'selected' : '' }} value="0">Pending
-                                            </option>
-                                            <option {{ $order_payment->status == '1' ? 'selected' : '' }} value="1">Completed
-                                            </option>
-                                        </select>
-
-                                        <button type="submit" class="btn btn-success btn-sm">Update</button>
-                                    </div>
-                                </form>
-                            </div>
+                    <div class="mb-3" style="display: flex; justify-content: space-between;">
+                        <div>
+                           
                         </div>
 
+                        <div class="" style="float:right">
+                            <a class="btn btn-success btn-sm" href="{{url('my_shipping_edit_payment/' . $order->id)}}" role="button">Shipping Only Editing  <i class="fa fa-pencil"></i></a>
+                        </div>
+                    </div>
+                    <div class="card p-4">
 
                         <div class="card  mb-3">
-                            <h5 class="card-body-title p-3" style="background: greenyellow"><strong>payment Item</strong>
+                            <h5 class="card-body-title p-3" style="background: coral; color:white;"><strong>Order Item</strong>
                             </h5>
                             <div class="form-layout">
                                 <div class="table-wrapper " style="overflow: auto">
@@ -76,7 +45,7 @@
                                         </thead>
                                         <tbody>
 
-                                            @foreach ($orderItems_payment as $row)
+                                            @foreach ($orderItems as $row)
                                                 <tr>
                                                     <td>
                                                         <img src="{{ asset('img_DB/product/image_one/' . $row->product->image_one) }}"
@@ -103,7 +72,7 @@
 
 
                         <div class="card mb-3">
-                            <h5 class="card-body-title p-3" style="background: greenyellow"><strong>Orders</strong>
+                            <h5 class="card-body-title p-3" style="background: coral; color:white;"><strong>Orders</strong>
                             </h5>
                             <div class="form-layout">
                                 <div class="row p-3">
@@ -112,34 +81,31 @@
                                         <div class="form-group">
                                             <label class="form-control-label">Invoice NO: </label>
                                             <input class="form-control" type="text"
-                                                value="#{{ $order_payment->invoice_no }}" readonly>
+                                                value="#{{ $order->invoice_no }}" readonly>
                                         </div>
                                     </div>
 
                                     <div class="col-lg-4 my-1">
                                         <div class="form-group">
                                             <label class="form-control-label">Payment Type: </label>
-                                            <input class="form-control" type="text" 
-                                                placeholder="Enter lastname" value="{{ $order_payment->payment_type }}"
-                                                readonly>
+                                            <input class="form-control" type="text" name="lastname"
+                                                 value="Hand Cash" readonly>
                                         </div>
                                     </div>
 
                                     <div class="col-lg-4 my-1">
                                         <div class="form-group">
                                             <label class="form-control-label">Sub Total:</label>
-                                            <input class="form-control" type="text" 
-                                                placeholder="Enter email address" value="{{ $order_payment->subtotal }}"
-                                                readonly>
+                                            <input class="form-control" type="text" name="email"
+                                                 value="{{ $order->subtotal }} TK" readonly>
                                         </div>
                                     </div>
 
                                     <div class="col-lg-4 my-1">
                                         <div class="form-group">
                                             <label class="form-control-label">Total:</label>
-                                            <input class="form-control" type="text" 
-                                                placeholder="Enter email address" value="{{ $order_payment->total }}"
-                                                readonly>
+                                            <input class="form-control" type="text" name="email"
+                                                 value="{{ $order->total }} TK" readonly>
                                         </div>
                                     </div>
 
@@ -147,12 +113,11 @@
                                         <div class="form-group">
                                             <label class="form-control-label">Discount: </label>
 
-                                            @if ($order_payment->discount_percentage == null)
-                                                <span class="py-1 px-2 rounded text-white"
-                                                    style="background:red;">No</span>
+                                            @if ($order->discount_percentage == null)
+                                                <span class="py-1 px-2 rounded text-white" style="background:red;">No</span>
                                             @else
-                                                <span class="py-1 px-2 rounded text-white bg-success"
-                                                    >{{ $order_payment->discount_percentage }}%</span>
+                                                <span
+                                                    class="py-1 px-2 rounded text-white bg-success">{{ $order->discount_percentage }}%</span>
                                             @endif
 
                                         </div>
@@ -165,7 +130,7 @@
 
 
                         <div class="card w-100  mb-3">
-                            <h5 class="card-body-title p-3" style="background: greenyellow"><strong>Shipping
+                            <h5 class="card-body-title p-3" style="background: coral; color:white;"><strong>Shipping
                                     Address</strong></h5>
                             <div class="form-layout">
                                 <div class="row  p-3">
@@ -174,7 +139,7 @@
                                         <div class="form-group">
                                             <label class="form-control-label">Name:</label>
                                             <input class="form-control" type="text"
-                                                value="{{ $shipping_payment->name }}" readonly>
+                                                value="{{ $shipping->name }}" readonly>
                                         </div>
                                     </div>
 
@@ -182,7 +147,7 @@
                                         <div class="form-group">
                                             <label class="form-control-label">Email address: </label>
                                             <input class="form-control" type="text" 
-                                                value="{{ $shipping_payment->email }}" readonly>
+                                                value="{{ $shipping->email }}" readonly>
                                         </div>
                                     </div>
 
@@ -190,25 +155,23 @@
                                         <div class="form-group">
                                             <label class="form-control-label">Shipping Phone: </label>
                                             <input class="form-control" type="text" 
-                                                value="{{ $shipping_payment->phone }}" readonly>
+                                                value="{{ $shipping->phone }}" readonly>
                                         </div>
                                     </div>
 
                                     <div class="col-lg-4 my-1">
                                         <div class="form-group">
                                             <label class="form-control-label">Shippng Address:</label>
-                                            <input class="form-control" type="text"
-                                                 value="{{ $shipping_payment->address }}"
-                                                readonly>
+                                            <input class="form-control" type="text" 
+                                                value="{{ $shipping->address }}" readonly>
                                         </div>
                                     </div>
 
                                     <div class="col-lg-4 my-1">
                                         <div class="form-group">
                                             <label class="form-control-label">State:</label>
-                                            <input class="form-control" type="text"
-                                                 value="{{ $shipping_payment->state }}"
-                                                readonly>
+                                            <input class="form-control" type="text" 
+                                                value="{{ $shipping->state }}" readonly>
                                         </div>
                                     </div>
 
@@ -216,8 +179,24 @@
                                         <div class="form-group">
                                             <label class="form-control-label">Post Code: </label>
                                             <input class="form-control" type="text" 
-                                               value="{{ $shipping_payment->post_code }}"
-                                                readonly>
+                                                value="{{ $shipping->post_code }}" readonly>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-4 my-1">
+                                        <div class="form-group">
+                                            <label class="form-control-label">Transaction Id: </label>
+                                            <input class="form-control" type="text" 
+                                                value="{{ $shipping->transaction_id }}" readonly>
+                                        </div>
+                                    </div>
+
+                                    
+                                    <div class="col-lg-4 my-1">
+                                        <div class="form-group">
+                                            <label class="form-control-label">Currency: </label>
+                                            <input class="form-control" type="text" 
+                                                value="{{ $shipping->currency }}" readonly>
                                         </div>
                                     </div>
 
@@ -225,18 +204,17 @@
                                         <div class="form-group">
                                             <label class="form-control-label">Payment In Online: </label>
                                             <input class="form-control" type="text" 
-                                               value="{{ $shipping_payment->amount }} TK"
+                                               value="{{ $shipping->amount }} TK"
                                                 readonly>
                                         </div>
                                     </div>
 
                                     <div class="col-12 my-1">
                                         <div class="form-group">
-                                            <label for="exampleInputEmail1">Description</label>
-                                            <textarea style="color:black" rows="4" name="description"
-                                                class="form-control  " readonly
-                                                cols="5">{{ $shipping_payment->description }}</textarea>
-                                            
+                                            <label for="exampleInputEmail1">Description (Optional)</label>
+                                            <textarea style="color:black" rows="4" name="description" class="form-control  "
+                                                readonly cols="5">{{ $shipping->description }}</textarea>
+
                                         </div>
                                     </div>
                                 </div>
@@ -251,16 +229,4 @@
 
         </div>
     </div>
-
-
-    <!-- Bootstrap script -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
-        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
-        integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous">
-    </script>
-
-</body>
-
-</html>
+@endsection

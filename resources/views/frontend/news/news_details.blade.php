@@ -7,7 +7,6 @@
 
 
 @section('frontend_content')
-
     <section id="blog-home " class="my-5 pt-5 container">
         <h2 class="font-weight-bold ">News Details</h2>
         <hr>
@@ -20,13 +19,15 @@
                 <div class="post-img">
                     <img style="height: 400px;  width: 100%;" class="img-fluid "
                         src="{{ asset('img_DB/news/' . $news->image) }}" alt="">
+
+                    <div class="top-left badge badge-success">
+                        {{ $news->category }}
+                    </div>
                 </div>
 
                 <div><small><small> {{ $news->created_at->diffForHumans() }},
                             {{ $news->created_at }} |</small></small>
-
                     <small><small>By {{ $news->writer_name }} |</small></small>
-
                     <small><small>{{ $news->place }} </small></small>
                 </div>
 
@@ -47,7 +48,7 @@
                             {{ csrf_field() }}
                             <div class="form-group">
                                 <div style="display: flex; justify-content: space-between;">
-                                    <input type="text"  name="query" id="query" class="form-control mr-1"
+                                    <input type="text" name="query" id="query" class="form-control mr-1"
                                         {{-- value="{{request()->input('query')}}" --}} placeholder="search news...">
 
                                     <button type="submit" class="btn text-white"> <i
@@ -67,9 +68,13 @@
                             <div class="blog-item">
                                 <div class="row">
                                     <div class="col-lg-4 col-md-12 col-12 ">
-                                        <a class="post-thumb"  href="{{ url('news_details/' . $item->id) }}">
-                                            <img style="height: 90px; width: 100%; border-radius:3px;"
-                                                src="{{ asset('img_DB/news/' . $item->image) }}" alt="">
+                                        <a class="post-thumb" href="{{ url('news_details/' . $item->id) }}">
+
+                                            <div class="post-img">
+                                                <img style="height: 90px; width: 100%; border-radius:3px;"
+                                                    src="{{ asset('img_DB/news/' . $item->image) }}" alt="">
+                                            </div>
+
                                         </a>
                                     </div>
 

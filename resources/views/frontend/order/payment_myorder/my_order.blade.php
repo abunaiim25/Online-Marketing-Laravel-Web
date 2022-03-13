@@ -31,10 +31,10 @@
 
                                 <ul class="nav nav-pills mb-3">
                                     <li class="nav-item ">
-                                        <a class="nav-link active" style="background-color: coral" aria-current="page" href="{{ url('my_orders') }}">Hand Cash</a>
+                                        <a class="nav-link " style="color: coral"  aria-current="page" href="{{ url('my_orders') }}">Hand Cash</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link " style="color: coral" href="{{ url('my_order_payment') }}">Payment Online</a>
+                                        <a class="nav-link active" style="background-color: coral" href="{{ url('my_order_payment') }}">Payment Online</a>
                                     </li>
                                 </ul>
 
@@ -51,7 +51,7 @@
                                                     <th>Phone</th>
                                                     <th>Invoice No</th>
                                                     <th>Payment Type</th>
-                                                    <th>Total</th>
+                                                    <th>Total Payment</th>
                                                     <th>Discount</th>
                                                     <th>Status</th>
                                                     <th>Action</th>
@@ -71,7 +71,7 @@
                                                         <td>{{ $row->user->email }}</td>
                                                         <td>{{ $row->user->phone }}</td>
                                                         <td>#{{ $row->invoice_no }}</td>
-                                                        <td>{{ $row->payment_type }}</td>
+                                                        <td>Online Cash</td>
                                                         <td>{{ $row->total }} TK</td>
                                                         <td>
                                                             @if ($row->discount_percentage == null)
@@ -82,11 +82,11 @@
                                                         </td>
                                                         <td>{{ $row->status == '0' ? 'Pending' : 'Completed' }}</td>
                                                         <td>
-                                                            <a href="{{ url('my_orders_view/' . $row->id) }}"
+                                                            <a href="{{ url('my_orders_view_payment/' . $row->id) }}"
                                                                 class="btn btn-sm btn-success"
                                                                 style="color: #fff!important;"><i
                                                                     class="fa fa-eye"></i></a>
-                                                            <a href="{{ url('my_orders_delete/' . $row->id) }}"
+                                                            <a href="{{ url('my_orders_delete_payment/' . $row->id) }}"
                                                                 class="btn btn-sm btn-danger" style="color: #fff!important;"
                                                                 onclick="return confirm('Are you shure to delete?')"><i
                                                                     class="fa fa-trash"></i></a>

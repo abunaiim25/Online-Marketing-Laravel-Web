@@ -1,8 +1,12 @@
 
-  <!-- partial:partials/_navbar.html -->
+@php
+$front = App\Models\FrontControl::first();
+@endphp
+ 
+ <!-- partial:partials/_navbar.html -->
   <nav class="navbar p-0 fixed-top d-flex flex-row">
     <div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
-      <a class="navbar-brand brand-logo-mini" href="#"><img src="{{ asset('frontend') }}/image/logo2.png" alt="logo" /></a>
+      <a class="navbar-brand brand-logo-mini" href="#"><img src="{{ asset('img_DB/front/logo/' . $front->logo_small) }}" alt="logo" /></a>
     </div>
     <div class="navbar-menu-wrapper flex-grow d-flex align-items-stretch">
       

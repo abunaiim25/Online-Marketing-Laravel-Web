@@ -102,7 +102,7 @@
                                                 <th>Email</th>
                                                 <th>Invoice No</th>
                                                 <th>Payment Type</th>
-                                                <th>Total TK</th>
+                                                <th>Total</th>
                                                 <th>Discount</th>
                                                 <th>Status</th>
                                                 <th>Action</th>
@@ -123,7 +123,7 @@
                                                     <td>{{$row->user->email}}</td>
                                                     <td>{{ $row->invoice_no }}</td>
                                                     <td>{{ $row->payment_type }}</td>
-                                                    <td>{{ $row->total }}</td>
+                                                    <td>{{ $row->total }} TK</td>
                                                     <td>
                                                         @if ($row->discount_percentage == null)
                                                             <span class="badge badge-danger">No</span>
