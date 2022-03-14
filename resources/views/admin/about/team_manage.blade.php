@@ -96,13 +96,13 @@
                                                     
                                                     <td>
                                                         <a href="{{ url('admin_team_edit/' . $row->id) }}"
-                                                            class="btn btn-sm btn-success"><i
-                                                                class="fa fa-pencil"></i></a>
+                                                            class="btn btn-sm btn-success">
+                                                            <i class="fa fa-pencil"></i></a>
 
                                                         <a href="{{ url('admin_team_delete/' . $row->id) }}"
                                                             class="btn btn-sm btn-danger"
-                                                            onclick="return confirm('Are You Sure To Delete?')"><i
-                                                                class="fa fa-trash"></i></a>
+                                                            onclick="return confirm('Are You Sure To Delete?')">
+                                                            <i class="fa fa-trash"></i></a>
 
                                                     </td>
                                                 </tr>

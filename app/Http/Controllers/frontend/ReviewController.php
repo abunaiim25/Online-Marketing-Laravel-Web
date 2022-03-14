@@ -11,85 +11,65 @@ use Illuminate\Support\Facades\Auth;
 
 class ReviewController extends Controller
 {
-    
+
     public function reviewadd($id)
     {
         $product = Product::find($id);
-         return view('frontend.review',compact('product'));
+        return view('frontend.review.review', compact('product'));
     }
 
 
-
-    
     public function reviewcreate(Request $request)
     {
         $product_id = $request->input('product_id');
         $user_review = $request->input('user_review');
-            $new_review = Review::create([
-                'user_id' => Auth::id(),
-                'prod_id' => $product_id,
-                'user_review' => $user_review
-            ]);
+        $new_review = Review::create([
+            'user_id' => Auth::id(),
+            'prod_id' => $product_id,
+            'user_review' => $user_review
+        ]);
 
-            if($new_review)
-            {
-                return redirect('shop')->with('status',"Thank you for writing a review");
-            }
-
-    }
-
-
-
-    public function editreview($product_slug)
-    {
-        $product = Product::where('slug', $product_slug)->where('status', '0')->first();
-
-        if($product)
-        {
-            $product_id = $product->id;
-            $review = Review::where('user_id', Auth::id())->where('prod_id', $product_id)->first();
-            if($review)
-            {
-                return view('frontend.reviews.edit',compact('review'));
-            }
-            else
-            {
-                return redirect()->back()->with('status', "The link you followed was broken");
-
-            }
-            
-        } else
-        {
-            return redirect()->back()->with('status', "The link you followed was broken");
-
+        $product = Product::where('id', $product_id)->where('status', '1')->first();
+        $id = $product->id;
+        if ($new_review) {
+            return redirect('product_details/' . $id)->with('status', "Thank you for writing a review");
+            //return redirect()->to('add-review/'.$product_id)->with('status', "Thank you for writing a review");
         }
     }
 
 
 
-    public function update(Request $request)
-{
-    $user_review = $request->input('user_review');
-    if($user_review != '')
-    {
-        $review_id = $request->input('review_id');
-        $review = Review::where('id', $review_id)->where('user_id',Auth::id())->first();
 
-        if($review)
-        {
-            $review->user_review = $request->input('user_review');
-            $review->update();
-            return redirect('category/'.$review->product->category->slug.'/'.$review->product->slug)->with('status', "Review Update Successfully");
-        }
-        else
-        {
-            return redirect()->back()->with('status', "The link you followed was broken");
-
-        }
-    }else
+    public function editreview($id)
     {
-        return redirect()->back()->with('status', "You can not submit an empty review");
+        $review = Review::find($id);
+        return view('frontend.review.edit', compact('review'));
+    }
+
+
+
+    public function update(Request $request, $id)
+    {
+        $review = Review::find($id);
+        $review->user_review = $request->user_review;
+        $review->update();
+
+        $product_id = $request->product_id;
+        $product = Product::where('id', $product_id)->where('status', '1')->first();
+        return redirect('product_details/' . $product->id)->with('status', "Your review updated");
 
     }
-}
+
+    public function Delete($id)
+    {
+        Review::find($id)->delete();
+        return Redirect()->back()->with('status', 'Review Deleted Successfully');
+    }
+
+    public function review_more($id)
+    {
+        $products = Product::findOrFail($id);
+        $review = Review::where('prod_id', $products->id)->latest()->paginate(10);
+        return view('frontend.review.more_review', compact('review', 'products'));
+    }
 }

@@ -102,7 +102,7 @@
 
                         <a href="{{ url('add-review/' . $products->id) }}" type="button"
                             class="btn btn-outline-warning mb-2">
-                             Write a review
+                            Write a review
                         </a>
                     </div>
 
@@ -187,40 +187,57 @@
     </section>
 
 
+    {{--Review--}}
     <section>
         <div class="container">
-            <div class="card p-3">
+            <div class="card p-4 " >
 
-                <div class="mb-3" style="display: flex; justify-content: space-between;">
+                <div class="mb-1" style="display: flex; justify-content: space-between;">
                     <div>
-                        <h2 class="mb-1 mx-2">Reviews</h2>
+                        <h2 class="mx-2">Reviews</h2>
                     </div>
                     <div class="" style="float:right">
-                        <a class="btn btn-warning btn-sm m-2" href="{{ url('add-review/' . $products->id) }}" role="button"> Write a review</a>
+                        <a class="btn btn-warning btn-sm " href="{{ url('add-review/' . $products->id) }}"
+                            role="button"> Write a review</a>
                     </div>
                 </div>
 
                 @foreach ($reviews as $item)
-                    <div class="card p-3">
+                    <div class="card ">
                         <div class="user-review">
 
-                            <h3>{{ $item->user->name }}</h3>
+                            <div class="card-header px-3" style="line-height: 0.5; background: blanchedalmond">
+                                <div style="display: flex; justify-content: space-between;">
+                                    <div>
+                                        <h3>{{ $item->user->name }}</h3>
+                                    </div>
 
-                            @if ($item->user_id == Auth::id())
-                                <a href="{{ url('edit-review/' . $products->slug . '/userreview') }}"
-                                    class="float-end bg-success badge text-white">Edit </a>
-                            @endif
+                                    <div class="" style="float:right">
+                                        @if ($item->user_id == Auth::id())
+                                            <a href="{{ url('delete-review/' . $item->id) }}"
+                                                class="float-end bg-danger badge text-white mx-1"
+                                                onclick="return confirm('Are You Sure To Delete?')"> <i
+                                                    class="fa fa-trash"></i></a>
 
-                            <small>{{ $item->created_at->diffForHumans() }}</small>
-                            <p class="mt-2">
+                                            <a href="{{ url('edit-review/' . $item->id) }}"
+                                                class="float-end bg-success badge text-white"> <i
+                                                    class="fa fa-pencil"></i></a>
+                                        @endif
+                                    </div>
+
+                                </div>
+                                <small><small>{{ $item->created_at->diffForHumans() }}</small></small>
+                            </div>
+
+                            <p class="my-2 px-3">
                                 {{ $item->user_review }}
                             </p>
                         </div>
                     </div>
                 @endforeach
 
-                @if ($reviews->count() >= 3)
-                    <a class="btn btn-success btn-sm m-2" href="#" role="button">Reviews See More</a>
+                @if ($reviews->count() > 2)
+                    <a class="btn btn-success btn-sm m-2" href="{{url('review_more/'.$products->id)}}" role="button">Reviews See More</a>
                 @endif
 
             </div>
@@ -247,16 +264,10 @@
                             <a href="{{ url('product_details/' . $product->id) }}">
                                 <img class="img-fluid mb-3"
                                     src="{{ asset('img_DB/product/image_one/' . $product->image_one) }}" alt="">
-                                <div class="star">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                </div>
+                                
                                 <h3>{{ $product->product_name }}</h3>
                                 <h6 class="p-price">Price: {{ $product->price }} TK</h6>
-                                <button class="buy-btn button-style">Details</button>
+                                <button class="buy-btn button-style mt-2">Details</button>
                             </a>
                         </div>
                     </li>

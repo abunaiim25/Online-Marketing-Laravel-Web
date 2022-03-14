@@ -5,13 +5,6 @@
     Online Marketing - Review
 @endsection
 
-<style>
-    .big-hr {
-        width: 100% !important;
-    }
-
-</style>
-
 
 @section('frontend_content')
     <section id="cart-home " class="mt-5  pt-5 container">
@@ -29,8 +22,8 @@
                                 <h5 class="mb-3">You are writing a review for <strong>{{ $product->product_name }}</strong></h5>
                                 <form action="{{ url('/add-review') }}" method="POST">
                                     @csrf
-                                   
                                     <input type="hidden" name="product_id" value="{{ $product->id }}">
+
                                     <textarea class="form-control" name="user_review"  rows="5" placeholder="Write a review"></textarea>
                                     <button type="submit" class="btn btn-warning mt-3">Submit Review</button>
                                 </form>

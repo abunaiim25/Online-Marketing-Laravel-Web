@@ -256,6 +256,10 @@ Route::post('add-rating',[RattingController::class,'addrating']);
 //=======================Review==========================
 Route::get('add-review/{id}',[ReviewController::class, 'reviewadd']);
 Route::post('add-review',[ReviewController::class, 'reviewcreate']);
+Route::get('edit-review/{id}',[ReviewController::class, 'editreview']);
+Route::put('update-review/{id}',[ReviewController::class, 'update']);
+Route::get('delete-review/{id}',[ReviewController::class, 'delete']);
+Route::get('review_more/{id}',[ReviewController::class, 'review_more']);
 });
 
 
