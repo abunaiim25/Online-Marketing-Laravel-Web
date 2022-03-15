@@ -187,18 +187,18 @@
     </section>
 
 
-    {{--Review--}}
+    {{-- Review --}}
     <section>
         <div class="container">
-            <div class="card p-4 " >
+            <div class="card p-4 ">
 
                 <div class="mb-1" style="display: flex; justify-content: space-between;">
                     <div>
                         <h2 class="mx-2">Reviews</h2>
                     </div>
                     <div class="" style="float:right">
-                        <a class="btn btn-warning btn-sm " href="{{ url('add-review/' . $products->id) }}"
-                            role="button"> Write a review</a>
+                        <a class="btn btn-warning btn-sm " href="{{ url('add-review/' . $products->id) }}" role="button">
+                            Write a review</a>
                     </div>
                 </div>
 
@@ -226,7 +226,24 @@
                                     </div>
 
                                 </div>
-                                <small><small>{{ $item->created_at->diffForHumans() }}</small></small>
+
+                                @php
+                                    $rating = App\Models\Rating::where('prod_id', $products->id)
+                                        ->where('user_id', $item->user->id)
+                                        ->first();
+                                @endphp
+                                @if ($rating)
+                                    @php
+                                        $user_rated = $rating->stars_rated;
+                                    @endphp
+                                    @for ($i = 1; $i <= $user_rated; $i++)
+                                    <small><i class="fa fa-star checked"></i></small>
+                                    @endfor
+                                    @for ($j = $user_rated + 1; $j <= 5; $j++)
+                                    <small><i class="fa fa-star"></i></small>
+                                    @endfor
+                                @endif
+                                <small>{{ $item->created_at->diffForHumans() }}</small>
                             </div>
 
                             <p class="my-2 px-3">
@@ -237,7 +254,8 @@
                 @endforeach
 
                 @if ($reviews->count() > 2)
-                    <a class="btn btn-success btn-sm m-2" href="{{url('review_more/'.$products->id)}}" role="button">Reviews See More</a>
+                    <a class="btn btn-success btn-sm m-2" href="{{ url('review_more/' . $products->id) }}"
+                        role="button">Reviews See More</a>
                 @endif
 
             </div>
@@ -264,7 +282,7 @@
                             <a href="{{ url('product_details/' . $product->id) }}">
                                 <img class="img-fluid mb-3"
                                     src="{{ asset('img_DB/product/image_one/' . $product->image_one) }}" alt="">
-                                
+
                                 <h3>{{ $product->product_name }}</h3>
                                 <h6 class="p-price">Price: {{ $product->price }} TK</h6>
                                 <button class="buy-btn button-style mt-2">Details</button>

@@ -53,7 +53,24 @@
                                     </div>
 
                                 </div>
-                                <small><small>{{ $item->created_at->diffForHumans() }}</small></small>
+                                
+                                @php
+                                    $rating = App\Models\Rating::where('prod_id', $products->id)
+                                        ->where('user_id', $item->user->id)
+                                        ->first();
+                                @endphp
+                                @if ($rating)
+                                    @php
+                                        $user_rated = $rating->stars_rated;
+                                    @endphp
+                                    @for ($i = 1; $i <= $user_rated; $i++)
+                                    <small><i class="fa fa-star checked"></i></small>
+                                    @endfor
+                                    @for ($j = $user_rated + 1; $j <= 5; $j++)
+                                    <small><i class="fa fa-star"></i></small>
+                                    @endfor
+                                @endif
+                                <small>{{ $item->created_at->diffForHumans() }}</small>
                             </div>
 
                             <p class="my-2 px-3">
