@@ -105,9 +105,7 @@
                             Write a review
                         </a>
                     </div>
-
                 </div>
-
 
             </div>
 

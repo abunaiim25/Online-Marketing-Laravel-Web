@@ -13,8 +13,7 @@
         <div class="row">
             <div class="col-lg-12 col-md-12 col-12 ">
 
-
-
+                
                 <form action="{{ url('admin_about_store_description') }}" method="POST">
                     @csrf
 
@@ -24,9 +23,9 @@
                     </div>
 
                     <div class="form-group">
-                      
-                        <textarea style="color:black" rows="15" name="about_description" required
-                            class="form-control bg-white " id="exampleInputEmail1" cols="5">{{$about->about_description}}</textarea>
+
+                        <textarea style="color:black" rows="15" name="about_description" required class="form-control bg-white "
+                            id="exampleInputEmail1" cols="5">{{ $about->about_description }}</textarea>
                         @error('about_description')
                             <strong class="text-danger">{{ $message }}</strong>
                         @enderror
@@ -34,8 +33,8 @@
 
                     <div class="form-group mt-5">
                         <label for="" class="mb-3">Read Less</label>
-                        <textarea style="color:black" rows="15" name="about_description_readmore" required
-                            class="form-control bg-white " id="exampleInputEmail1" cols="5">{{$about->about_description_readmore}}</textarea>
+                        <textarea style="color:black" rows="15" name="about_description_readmore" required class="form-control bg-white "
+                            id="exampleInputEmail1" cols="5">{{ $about->about_description_readmore }}</textarea>
                         @error('about_description_readmore')
                             <strong class="text-danger">{{ $message }}</strong>
                         @enderror

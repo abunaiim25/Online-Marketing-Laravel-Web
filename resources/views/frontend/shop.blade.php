@@ -61,7 +61,7 @@
                 <p>Here you can check out our new product with fair price on Online-Marketing</p>
             </div>
 
-            <div class="row mx-auto ">
+            <div class="row ">
 
                 @foreach ($products as $product)
                     <div class="product text-center col-lg-3 col-md-6 col-12">

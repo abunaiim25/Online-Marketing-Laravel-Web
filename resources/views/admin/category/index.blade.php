@@ -129,7 +129,7 @@
                                 @csrf
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Add Category</label>
-                                    <input type="text" name="category_name"
+                                    <input  style="color: black" type="text" name="category_name"
                                         class="form-control bg-white
                            @error('category_name') is-invalid @enderror"
                                         id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Category">

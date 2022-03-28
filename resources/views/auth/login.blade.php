@@ -46,5 +46,11 @@
                 </x-jet-button>
             </div>
         </form>
+
+        <div class="mt-6 text-center text-sm">
+            <a   aria-current="page"
+            href="{{ route('register') }}"> Not Registered yet?<span style="color: green"> Create an Account.</span></a>
+        </div>
+        
     </x-jet-authentication-card>
 </x-guest-layout>

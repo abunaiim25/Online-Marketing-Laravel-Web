@@ -18,8 +18,6 @@ class RattingController extends Controller
         $product_id = $request->input('product_id');
 
         
-
-        
         $product_check = Product::where('id', $product_id)->where('status', '1')->first();
         if ($product_check) {
 
