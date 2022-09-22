@@ -11,7 +11,14 @@ $front = App\Models\FrontControl::first();
 
 @section('frontend_content')
 <!--Background Image-->
-
+<section id="home" style=" background-image: url({{ asset('img_DB/front/home/' . $front->home_bg_img) }});">
+    <div class="container">
+        <h5 class="w-50">{{ $front->home_bg_txt1 }}</h5>
+        <h1 class="w-50"><b><span>{{ $front->home_bg_txt2 }}</span></b></h1>
+        <p class="w-50">{{ $front->home_bg_txt3 }}</p>
+        <a class="btn text-uppercase  button-style" href="{{ url('shop') }}" role="button">Shop Now</a>
+    </div>
+</section>
 
 
 <!--Brand-->
