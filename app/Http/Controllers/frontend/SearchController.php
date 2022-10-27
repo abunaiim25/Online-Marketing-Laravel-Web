@@ -10,26 +10,6 @@ use Illuminate\Http\Request;
 
 class SearchController extends Controller
 {
-    //searching search_product_item
-    public function search_product_item(Request $request)
-    {
-        $request->validate([
-            'query'=>'required',
-        ]);
-       
-        $query = $request->input('query');
-        //dd($query); //for see
-        
-        $products = Product::
-        where('product_name','like',"%$query%")
-        ->orWhere('product_code','like',"%$query%")
-        ->orWhere('product_quantity','like',"%$query%")
-        ->orWhere('description','like',"%$query%")
-        ->orWhere('price','like',"%$query%")
-        ->paginate(10);
-        //dd($doctor);
-        return view('frontend.search.product_search',compact('products'));
-    }
 
 
         //searching search_news_query

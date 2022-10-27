@@ -14,15 +14,6 @@ window.addEventListener('scroll',() => {
 
 
 
-/* ====================Product Display======================= */
-function myFunctionimg(small_img){
-    var full_img = document.getElementById('display_img');
-    full_img.src=small_img.src;
-    }
-
-
-
-
 /*======================Search=================================*/
 let search = document.querySelector(".search");
 let clear = document.querySelector(".clear");
@@ -49,23 +40,4 @@ $(document).ready(function() {
         } 
     });  
   });
-
-
-
-
-/*=============read more read less===============*/
-const readMore = document.querySelector('.read-more-btn');
-const text = document.querySelector('.text');
-
-
-readMore.addEventListener('click',(element)=>{
-    text.classList.toggle('show-more');
-    if(readMore.innerHTML === "Read More")
-    {
-        readMore.innerHTML = "Read Less"
-    }
-    else{
-        readMore.innerHTML = "Read More"
-    }
-});
 

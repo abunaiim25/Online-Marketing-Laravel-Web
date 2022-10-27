@@ -34,7 +34,6 @@ class AboutadminController extends Controller
         //$about = About::first();
         //$about=new About;
         $about->about_description = $request->about_description;
-        $about->about_description_readmore = $request->about_description_readmore;
         $about->save();
         return Redirect()->back()->with('status', " 'About Us' Description Updated Successfully");
     }

@@ -15,7 +15,4 @@ class Product extends Model
         'image_one','image_two','image_three','image_four','status',
         ];
 
-        public function category(){
-            return $this->belongsTo(Category::class, 'category_id');//joined with category id
-        }
 }

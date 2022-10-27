@@ -23,29 +23,10 @@ class CreateFrontControlsTable extends Migration
             $table->string('home_bg_txt1')->nullable();
             $table->string('home_bg_txt2')->nullable();
             $table->string('home_bg_txt3')->nullable();
-
-            $table->string('home_new_txt1')->nullable();
-            $table->string('home_new_txt2')->nullable();
-            $table->string('home_new_txt3')->nullable();
-            $table->string('home_new_txt1_img')->nullable();
-            $table->string('home_new_txt2_img')->nullable();
-            $table->string('home_new_txt3_img')->nullable();
             
-            $table->string('home_banner_img')->nullable();
-            $table->string('home_banner_txt1')->nullable();
-            $table->string('home_banner_txt2')->nullable();
-
-            $table->string('shop_banner_img')->nullable();
-            $table->string('shop_banner_txt1')->nullable();
-            $table->string('shop_banner_txt2')->nullable();
-
             $table->string('about_banner_img')->nullable();
 
             $table->string('contact_banner_img')->nullable();
-
-            $table->string('myorder_banner_img')->nullable();
-            $table->string('myorder_banner_txt1')->nullable();
-            $table->string('myorder_banner_txt2')->nullable();
 
             $table->text('footer_text')->nullable();
             $table->string('footer_contact_address')->nullable();
